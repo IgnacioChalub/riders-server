@@ -1,4 +1,4 @@
-import express from "express";
+import express, {NextFunction, Request, Response} from "express";
 import {graphqlHTTP} from "express-graphql";
 
 const router = express.Router();
@@ -23,21 +23,18 @@ const schema = buildSchema(`
     surname: String!
     DNI: String!
     email: String!
-    password: String!
   }
 
-  type Query {
-    getCaller(name: String!): Caller
-  }
-
+   type Query {
+    getCaller(name: String!): String
+   }
+  
   type Mutation {
     registerCaller(input: RegisterCallerInput): Caller
   }
 `);
 
-
-// @ts-ignore
-const registerCaller = ({input}) => {
+const registerCaller = ({input}: any) => {
     const {name, surname, DNI, email, password} = input;
     const id = 17;
     return {
@@ -50,14 +47,25 @@ const registerCaller = ({input}) => {
     };
 }
 
+const getCaller = () => {
+    return "hey";
+}
+
+const loginMiddleware = (req: Request, res: Response, next: NextFunction) =>  {
+    const token = req.header('auth-token');
+    if(!token) return res.status(400).json('Invalid token').send();
+    next();
+}
+
 const root = {
-    registerCaller
+    registerCaller,
+    getCaller
 };
 
-router.use('/caller', expressGraphql({
+router.use('/caller', loginMiddleware, expressGraphql({
     schema: schema,
     rootValue: root,
-    graphiql: true,
+    graphiql: false,
 }));
 
 export {router as callerRouter};
