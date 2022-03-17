@@ -1,14 +1,17 @@
 import express, {Application, Request, Response} from 'express';
 import bodyParser from "body-parser";
+import {callerRouter} from "./infrastructure/router/caller.router";
+
 
 const app: Application = express();
 const PORT = 3000;
 
-app.set('port', PORT);
-app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
-    res.status(200).send('Hello World!')
-})
+//settings
+app.set('port', PORT);
+app.use(bodyParser.json());
+
+//routers
+app.use(callerRouter);
 
 export default app;
