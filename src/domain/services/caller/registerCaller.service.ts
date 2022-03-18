@@ -1,7 +1,7 @@
-import ICallerRepository from "../repositories/caller.repository";
-import IPasswordHasher from "../infrastructureServices/passwordHasher";
-import IIdGenerator from "../infrastructureServices/idGenerator";
-import {Caller} from "../entities/caller";
+import ICallerRepository from "../../repositories/caller.repository";
+import IPasswordHasher from "../../infrastructureServices/passwordHasher";
+import IIdGenerator from "../../infrastructureServices/idGenerator";
+import {Caller} from "../../entities/caller";
 
 class RegisterCallerService{
 

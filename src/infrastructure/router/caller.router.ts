@@ -1,6 +1,7 @@
 import express from "express";
 import {buildSchema} from "graphql";
 import registerCaller from "./registerCaller.route";
+import logInCaller from "./logInCaller.route";
 
 
 const router = express.Router();
@@ -10,13 +11,19 @@ const expressGraphql = require('express-graphql').graphqlHTTP;
 
 const root = {
     registerCaller,
+    logInCaller
 };
 
 const schema = buildSchema(`
   input RegisterCallerInput {
     name: String!
     surname: String!
-    DNI: String!
+    DNI: Int!
+    email: String!
+    password: String!
+  }
+  
+  input LogInCallerInput {
     email: String!
     password: String!
   }
@@ -25,16 +32,21 @@ const schema = buildSchema(`
     id: String!
     name: String!
     surname: String!
-    DNI: String!
+    DNI: Int!
     email: String!
   }
 
-   type Query {
+  type Token{
+    token: String!
+  }
+
+  type Query {
     getCaller(name: String!): String
-   }
+  }
   
   type Mutation {
     registerCaller(input: RegisterCallerInput): Caller
+    logInCaller(input: LogInCallerInput): Token
   }
 `);
 

@@ -1,4 +1,4 @@
-import RegisterCallerService from "../../../domain/services/registerCaller.service";
+import RegisterCallerService from "../../../domain/services/caller/registerCaller.service";
 import {Caller} from "../../../domain/entities/caller";
 
 

@@ -23,6 +23,14 @@ class Caller{
         this.email = email;
         this.password = password;
     }
+
+    getId(): string{
+        return this.id;
+    }
+
+    getPassword(): string{
+        return this.password;
+    }
 }
 
 export {Caller};

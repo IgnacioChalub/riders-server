@@ -1,5 +1,5 @@
 import RegisterCallerController from "../../../aplication/controllers/caller/registerCaller.controller";
-import RegisterCallerService from "../../../domain/services/registerCaller.service";
+import RegisterCallerService from "../../../domain/services/caller/registerCaller.service";
 import ICallerRepository from "../../../domain/repositories/caller.repository";
 import CallerDAO from "../../persistance/callerDAO";
 import IIdGenerator from "../../../domain/infrastructureServices/idGenerator";

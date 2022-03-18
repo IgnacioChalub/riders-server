@@ -18,6 +18,12 @@ class CallerDAO implements ICallerRepository{
             .orWhere("caller.email = :email", {email: email})
             .getOne();
     }
+
+    async getByEmail(email: string): Promise<Caller> {
+        return <Caller>await this.callerRepository.createQueryBuilder(this.tableName)
+            .where("caller.email = :email", {email: email})
+            .getOne();
+    }
 }
 
 export default CallerDAO;
