@@ -1,11 +1,11 @@
-import RegisterCallerController from "./registerCaller.controller";
-import RegisterCallerService from "../../../../domain/services/registerCaller.service";
-import ICallerRepository from "../../../../domain/repositories/caller.repository";
-import CallerDAO from "../../../../infrastructure/persistance/callerDAO";
-import IIdGenerator from "../../../../domain/infrastructureServices/idGenerator";
-import IdGeneratorImplementation from "../../../../infrastructure/services/idGeneratorImpl";
-import IPasswordHasher from "../../../../domain/infrastructureServices/passwordHasher";
-import PasswordHasherImplementation from "../../../../infrastructure/services/passwordHasherImpl";
+import RegisterCallerController from "../../../aplication/controllers/caller/registerCaller.controller";
+import RegisterCallerService from "../../../domain/services/registerCaller.service";
+import ICallerRepository from "../../../domain/repositories/caller.repository";
+import CallerDAO from "../../persistance/callerDAO";
+import IIdGenerator from "../../../domain/infrastructureServices/idGenerator";
+import IdGeneratorImplementation from "../../services/idGeneratorImpl";
+import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
+import PasswordHasherImplementation from "../../services/passwordHasherImpl";
 
 class RegisterCallerControllerProvider{
 

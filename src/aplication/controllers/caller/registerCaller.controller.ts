@@ -1,5 +1,5 @@
-import RegisterCallerService from "../../../../domain/services/registerCaller.service";
-import {Caller} from "../../../../domain/entities/caller";
+import RegisterCallerService from "../../../domain/services/registerCaller.service";
+import {Caller} from "../../../domain/entities/caller";
 
 
 class RegisterCallerController{

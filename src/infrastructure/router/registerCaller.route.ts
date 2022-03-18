@@ -1,5 +1,5 @@
 import RegisterCallerControllerProvider
-    from "../../aplication/controllers/caller/registerCaller/registerCaller.controllerProvider";
+    from "../controllersProviders/caller/registerCaller.controllerProvider";
 import {Caller} from "../../domain/entities/caller";
 
 const registerCaller = async ({input}: any): Promise<Caller> => {
