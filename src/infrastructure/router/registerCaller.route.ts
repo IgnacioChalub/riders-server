@@ -1,14 +1,10 @@
-const registerCaller = ({input}: any) => {
+import RegisterCallerControllerProvider
+    from "../../aplication/controllers/caller/registerCaller/registerCaller.controllerProvider";
+import {Caller} from "../../domain/entities/caller";
+
+const registerCaller = async ({input}: any): Promise<Caller> => {
     const {name, surname, DNI, email, password} = input;
-    const id = 14;
-    return {
-        id,
-        name,
-        surname,
-        DNI,
-        email,
-        password
-    }
+    return await RegisterCallerControllerProvider.getController().registerCaller(name, surname, DNI, email, password);
 }
 
 export default registerCaller;

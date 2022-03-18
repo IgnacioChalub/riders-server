@@ -16,3 +16,5 @@ class PasswordHasherImplementation implements IPasswordHasher{
         return bcrypt.hashSync(password, 5);
     }
 }
+
+export default PasswordHasherImplementation;

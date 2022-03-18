@@ -1,8 +1,9 @@
-import Caller from "../entities/caller";
+import {Caller} from "../entities/caller";
+
 
 interface ICallerRepository{
-    create(caller: Caller): void;
-    getByDNIorEmail(DNI: number, email: string): Caller;
+    save(caller: Caller): void;
+    getByDNIorEmail(DNI: number, email: string): Promise<Caller>;
 }
 
 export default ICallerRepository;

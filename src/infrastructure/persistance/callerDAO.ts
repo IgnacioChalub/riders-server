@@ -1,11 +1,23 @@
 import ICallerRepository from "../../domain/repositories/caller.repository";
-import Caller from "../../domain/entities/caller";
+import {Caller} from "../../domain/entities/caller";
+import {getRepository} from "typeorm";
+
 
 class CallerDAO implements ICallerRepository{
-    create(caller: Caller): void {
+
+    private callerRepository = getRepository(Caller, "db");
+    private tableName = "caller";
+
+    save(caller: Caller): void {
+        this.callerRepository.save(caller);
     }
-    getByDNIorEmail(DNI: number, email: string): Caller {
-        // @ts-ignore
-        return undefined;
+
+    async getByDNIorEmail(DNI: number, email: string): Promise<Caller> {
+        return <Caller>await this.callerRepository.createQueryBuilder(this.tableName)
+            .where("caller.DNI = :DNI", {DNI: DNI})
+            .orWhere("caller.email = :email", {email: email})
+            .getOne();
     }
 }
+
+export default CallerDAO;
