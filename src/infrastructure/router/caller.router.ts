@@ -1,4 +1,4 @@
-import express, {NextFunction, Request, Response} from "express";
+import express from "express";
 import {buildSchema} from "graphql";
 import registerCaller from "./registerCaller.route";
 

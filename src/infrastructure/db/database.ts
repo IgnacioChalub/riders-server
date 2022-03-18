@@ -1,4 +1,4 @@
-import {getConnectionManager, getRepository} from "typeorm";
+import {getConnectionManager} from "typeorm";
 import {Caller} from "../../domain/entities/caller";
 
 const runDbConnection = async (): Promise<void> => {
