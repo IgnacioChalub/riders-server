@@ -10,7 +10,9 @@ const cors = require('cors')
 //settings
 app.set('port', PORT);
 app.use(bodyParser.json());
-//app.use(cors);
+app.use(cors({
+    origin: '*'
+}));
 
 //routers
 app.use(callerRouter);
