@@ -9,6 +9,6 @@ const main = (): void => {
 
 main();
 runDbConnection().then(r => {
-   console.log("DB connected")
+   console.log("Alejo demi")
 });
 
