@@ -3,9 +3,9 @@ import RegisterCallerService from "../../../domain/services/caller/registerCalle
 import ICallerRepository from "../../../domain/repositories/caller.repository";
 import CallerDAO from "../../persistance/callerDAO";
 import IIdGenerator from "../../../domain/infrastructureServices/idGenerator";
-import IdGeneratorImplementation from "../../services/idGeneratorImpl";
+import IdGeneratorImplementation from "../../services/idGeneratorImplementation";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
-import PasswordHasherImplementation from "../../services/passwordHasherImpl";
+import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
 
 class RegisterCallerControllerProvider{
 

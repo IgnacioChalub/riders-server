@@ -2,9 +2,9 @@ import RegisterRiderController from "../../../aplication/controllers/rider/regis
 import IRiderRepository from "../../../domain/repositories/rider.repository";
 import RiderDAO from "../../persistance/riderDAO";
 import IIdGenerator from "../../../domain/infrastructureServices/idGenerator";
-import IdGeneratorImplementation from "../../services/idGeneratorImpl";
+import IdGeneratorImplementation from "../../services/idGeneratorImplementation";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
-import PasswordHasherImplementation from "../../services/passwordHasherImpl";
+import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
 import RegisterRiderService from "../../../domain/services/rider/registerRider.service";
 
 class RegisterRiderControllerProvider{

@@ -5,7 +5,7 @@ import CallerDAO from "../../persistance/callerDAO";
 import ILogger from "../../../domain/infrastructureServices/logger";
 import JWTLogger from "../../services/logger";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
-import PasswordHasherImplementation from "../../services/passwordHasherImpl";
+import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
 
 class RegisterCallerControllerProvider{
 
