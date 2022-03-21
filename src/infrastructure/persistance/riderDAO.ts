@@ -1,6 +1,5 @@
 import IRiderRepository from "../../domain/repositories/rider.repository";
 import {getRepository} from "typeorm";
-import {Caller} from "../../domain/entities/caller";
 import Rider from "../../domain/entities/rider";
 
 class RiderDAO implements IRiderRepository{

@@ -1,6 +1,7 @@
 import express from "express";
 import {buildSchema} from "graphql";
 import registerRider from "./registerRider.route";
+import logInRider from "./logInRider.route";
 
 const router = express.Router();
 
@@ -8,7 +9,8 @@ const router = express.Router();
 const expressGraphql = require('express-graphql').graphqlHTTP;
 
 const root = {
-    registerRider
+    registerRider,
+    logInRider
 };
 
 const schema = buildSchema(`
@@ -19,6 +21,11 @@ const schema = buildSchema(`
     email: String!
     password: String!
     vehicleType: String!
+  }
+  
+  input LogInRiderInput{
+    email: String!
+    password: String!
   }
   
   type Rider {
@@ -40,6 +47,7 @@ const schema = buildSchema(`
   
   type Mutation {
     registerRider(input: RegisterRiderInput): Rider
+    logInRider(input: LogInRiderInput): Token
   }
 `);
 

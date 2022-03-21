@@ -35,6 +35,13 @@ class Rider{
         this.vehicle = vehicle;
     }
 
+    getId(): string{
+        return this.id;
+    }
+
+    getPassword(): string{
+        return this.password;
+    }
 }
 
 export default Rider;
