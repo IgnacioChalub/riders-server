@@ -3,7 +3,6 @@ import {buildSchema} from "graphql";
 import registerCaller from "./registerCaller.route";
 import logInCaller from "./logInCaller.route";
 
-
 const router = express.Router();
 
 //graphql

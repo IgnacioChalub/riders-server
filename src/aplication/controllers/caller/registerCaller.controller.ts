@@ -1,7 +1,6 @@
 import RegisterCallerService from "../../../domain/services/caller/registerCaller.service";
 import {Caller} from "../../../domain/entities/caller";
 
-
 class RegisterCallerController{
 
     private registerCallerService: RegisterCallerService;

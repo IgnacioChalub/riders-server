@@ -2,18 +2,24 @@ import {Column, Entity, PrimaryColumn} from "typeorm";
 
 @Entity()
 class Caller{
+
     @PrimaryColumn()
-    private id: string;
+    private readonly id: string;
+
     @Column()
     private name: string;
+
     @Column()
     private surname: string;
+
     @Column()
     private DNI: number;
+
     @Column()
     private email: string;
+
     @Column()
-    private password: string;
+    private readonly password: string;
 
     constructor(id: string, name: string, surname: string, DNI: number, email: string, password: string) {
         this.id = id;

@@ -9,7 +9,7 @@ class CallerDAO implements ICallerRepository{
     private tableName = "caller";
 
     save(caller: Caller): void {
-        this.callerRepository.save(caller);
+        this.callerRepository.save(caller).then(r => r);
     }
 
     async getByDNIorEmail(DNI: number, email: string): Promise<Caller> {
@@ -20,9 +20,21 @@ class CallerDAO implements ICallerRepository{
     }
 
     async getByEmail(email: string): Promise<Caller> {
-        return <Caller>await this.callerRepository.createQueryBuilder(this.tableName)
-            .where("caller.email = :email", {email: email})
-            .getOne();
+        return <Caller>await this.callerRepository.findOne({
+            where: {
+                // @ts-ignore
+                email: email
+            },
+        })
+    }
+
+    async getById(id: string): Promise<Caller> {
+        return <Caller>await this.callerRepository.findOne({
+            where: {
+                // @ts-ignore
+                id: id
+            },
+        })
     }
 }
 

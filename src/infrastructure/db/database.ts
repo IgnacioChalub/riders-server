@@ -1,5 +1,6 @@
 import {getConnectionManager} from "typeorm";
 import {Caller} from "../../domain/entities/caller";
+import Rider from "../../domain/entities/rider";
 
 const runDbConnection = async (): Promise<void> => {
     const connectionManager = getConnectionManager();
@@ -13,7 +14,8 @@ const runDbConnection = async (): Promise<void> => {
         password: "password",
         database: "riders-database",
         entities: [
-            Caller
+            Caller,
+            Rider
         ],
         synchronize: true,
     })
