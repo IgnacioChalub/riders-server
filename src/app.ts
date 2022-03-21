@@ -1,7 +1,8 @@
 import express, {Application} from 'express';
 import bodyParser from "body-parser";
 import "reflect-metadata";
-import {callerRouter} from "./infrastructure/router/caller.router";
+import {callerRouter} from "./infrastructure/router/caller/caller.router";
+import {riderRouter} from "./infrastructure/router/rider/rider.router";
 
 const app: Application = express();
 const PORT = 5000;
@@ -16,5 +17,6 @@ app.use(cors({
 
 //routers
 app.use(callerRouter);
+app.use(riderRouter);
 
 export default app;

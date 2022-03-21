@@ -5,22 +5,22 @@ import {getRepository} from "typeorm";
 
 class CallerDAO implements ICallerRepository{
 
-    private callerRepository = getRepository(Caller, "db");
+    private repository = getRepository(Caller, "db");
     private tableName = "caller";
 
     save(caller: Caller): void {
-        this.callerRepository.save(caller).then(r => r);
+        this.repository.save(caller).then(r => r);
     }
 
     async getByDNIorEmail(DNI: number, email: string): Promise<Caller> {
-        return <Caller>await this.callerRepository.createQueryBuilder(this.tableName)
+        return <Caller>await this.repository.createQueryBuilder(this.tableName)
             .where("caller.DNI = :DNI", {DNI: DNI})
             .orWhere("caller.email = :email", {email: email})
             .getOne();
     }
 
     async getByEmail(email: string): Promise<Caller> {
-        return <Caller>await this.callerRepository.findOne({
+        return <Caller>await this.repository.findOne({
             where: {
                 // @ts-ignore
                 email: email
@@ -29,7 +29,7 @@ class CallerDAO implements ICallerRepository{
     }
 
     async getById(id: string): Promise<Caller> {
-        return <Caller>await this.callerRepository.findOne({
+        return <Caller>await this.repository.findOne({
             where: {
                 // @ts-ignore
                 id: id

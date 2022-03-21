@@ -1,4 +1,4 @@
-import LogInCallerControllerProvider from "../controllersProviders/caller/logInCaller.controllerProvider";
+import LogInCallerControllerProvider from "../../controllersProviders/caller/logInCaller.controllerProvider";
 
 const logInCaller = async ({input}: any): Promise<any> => {
     const { email, password} = input;
