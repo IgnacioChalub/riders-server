@@ -23,4 +23,3 @@ const runDbConnection = async (): Promise<void> => {
 };
 
 export default runDbConnection;
-
