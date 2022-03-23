@@ -2,6 +2,8 @@ import express from "express";
 import {buildSchema} from "graphql";
 import registerRider from "./registerRider.route";
 import logInRider from "./logInRider.route";
+import getRider from "./getRider.route";
+import {Request} from "express";
 
 const router = express.Router();
 
@@ -10,7 +12,8 @@ const expressGraphql = require('express-graphql').graphqlHTTP;
 
 const root = {
     registerRider,
-    logInRider
+    logInRider,
+    getRider
 };
 
 const schema = buildSchema(`
@@ -42,7 +45,7 @@ const schema = buildSchema(`
   }
 
   type Query {
-    getCaller(name: String!): String
+    getRider: Rider
   }
   
   type Mutation {
@@ -53,8 +56,7 @@ const schema = buildSchema(`
 
 router.use('/rider', expressGraphql({
     schema: schema,
-    rootValue: root,
-    graphiql: false,
+    rootValue: root
 }));
 
 export {router as riderRouter};
