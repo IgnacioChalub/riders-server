@@ -1,10 +1,9 @@
-import IPasswordHasher from "../../infrastructureServices/passwordHasher";
+import ILogger from "../../../domain/infrastructureServices/logger";
+import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
 import ICallerRepository from "../../repositories/caller.repository";
-import ILogger from "../../infrastructureServices/logger";
-import {Caller} from "../../entities/caller";
+import {Caller} from "../../../domain/entities/caller";
 
-class LogInCallerService{
-
+class LogInCallerAplicationService{
     private logger: ILogger;
     private passwordHasher: IPasswordHasher;
     private callerRepository: ICallerRepository;
@@ -23,4 +22,4 @@ class LogInCallerService{
     }
 }
 
-export default LogInCallerService;
+export default LogInCallerAplicationService;

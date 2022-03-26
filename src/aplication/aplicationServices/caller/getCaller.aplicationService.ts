@@ -1,8 +1,7 @@
 import ICallerRepository from "../../repositories/caller.repository";
-import {Caller} from "../../entities/caller";
+import {Caller} from "../../../domain/entities/caller";
 
-class GetCallerService{
-
+class GetCallerAplicationService{
     private callerRepository: ICallerRepository;
 
 
@@ -15,4 +14,4 @@ class GetCallerService{
     }
 }
 
-export default GetCallerService;
+export default GetCallerAplicationService;

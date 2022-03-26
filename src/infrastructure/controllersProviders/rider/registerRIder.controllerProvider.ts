@@ -1,6 +1,5 @@
 import RegisterRiderController from "../../../aplication/controllers/rider/registerRider.controller";
 import IRiderRepository from "../../../domain/repositories/rider.repository";
-import IdGeneratorImplementation from "../../services/idGeneratorImplementation";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
 import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
 import RegisterRiderService from "../../../domain/services/rider/registerRider.service";

@@ -1,4 +1,4 @@
-import ICallerRepository from "../../domain/repositories/caller.repository";
+import ICallerRepository from "../../aplication/repositories/caller.repository";
 import {Caller} from "../../domain/entities/caller";
 import {getRepository} from "typeorm";
 import IdGeneratorImplementation from "../services/idGeneratorImplementation";

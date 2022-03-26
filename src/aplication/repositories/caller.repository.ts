@@ -1,4 +1,4 @@
-import {Caller} from "../entities/caller";
+import {Caller} from "../../domain/entities/caller";
 
 interface ICallerRepository{
     generateId(): Promise<string>;
