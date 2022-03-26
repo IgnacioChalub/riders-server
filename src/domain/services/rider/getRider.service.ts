@@ -5,7 +5,6 @@ class GetRiderService {
 
     private riderRepository: IRiderRepository;
 
-
     constructor(riderRepository: IRiderRepository) {
         this.riderRepository = riderRepository;
     }
