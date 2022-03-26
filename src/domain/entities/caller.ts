@@ -1,4 +1,5 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
+import {Email} from "./email";
 
 @Entity()
 class Caller{
@@ -15,13 +16,13 @@ class Caller{
     @Column()
     private DNI: number;
 
-    @Column()
-    private email: string;
+    @Column(() => Email)
+    private email: Email;
 
     @Column()
     private readonly password: string;
 
-    constructor(id: string, name: string, surname: string, DNI: number, email: string, password: string) {
+    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string) {
         this.id = id;
         this.name = name;
         this.surname = surname;

@@ -1,11 +1,12 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
 import {Vehicle} from "./vehicle";
+import {Email} from "./email";
 
 @Entity()
 class Rider{
 
     @PrimaryColumn()
-    private id: string;
+    private readonly id: string;
 
     @Column()
     private name: string;
@@ -16,16 +17,19 @@ class Rider{
     @Column()
     private DNI: number;
 
-    @Column()
-    private email: string;
+    @Column(() => Email)
+    private email: Email;
 
     @Column()
-    private password: string;
+    private readonly password: string;
 
-    @Column(type => Vehicle)
+    @Column(() => Vehicle)
     private vehicle: Vehicle;
 
-    constructor(id: string, name: string, surname: string, DNI: number, email: string, password: string, vehicle: Vehicle) {
+    // @Column()
+    // private rating: number;
+
+    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, vehicle: Vehicle) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -33,6 +37,7 @@ class Rider{
         this.email = email;
         this.password = password;
         this.vehicle = vehicle;
+        //this.rating = rating;
     }
 
     getId(): string{

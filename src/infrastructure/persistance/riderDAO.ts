@@ -1,6 +1,7 @@
 import IRiderRepository from "../../domain/repositories/rider.repository";
 import {getRepository} from "typeorm";
 import Rider from "../../domain/entities/rider";
+import {Email} from "../../domain/entities/email";
 
 class RiderDAO implements IRiderRepository{
 
@@ -11,20 +12,17 @@ class RiderDAO implements IRiderRepository{
         this.repository.save(rider).then(r => r);
     }
 
-    async getByDNIorEmail(DNI: number, email: string): Promise<Rider> {
+    async getByDNIorEmail(DNI: number, emailAddress: string): Promise<Rider> {
         return <Rider>await this.repository.createQueryBuilder(this.tableName)
             .where("rider.DNI = :DNI", {DNI: DNI})
-            .orWhere("rider.email = :email", {email: email})
+            .orWhere("rider.emailAddress = :emailAddress", {emailAddress: emailAddress})
             .getOne();
     }
 
-    async getByEmail(email: string): Promise<Rider> {
-        return <Rider>await this.repository.findOne({
-            where: {
-                // @ts-ignore
-                email: email
-            },
-        })
+    async getByEmail(emailAddress: string): Promise<Rider> {
+        return <Rider>await this.repository.createQueryBuilder(this.tableName)
+            .where("rider.emailAddress = :emailAddress", {emailAddress: emailAddress})
+            .getOne();
     }
 
     async getById(id: string): Promise<Rider> {

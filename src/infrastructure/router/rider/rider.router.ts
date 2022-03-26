@@ -36,8 +36,16 @@ const schema = buildSchema(`
     name: String!
     surname: String!
     DNI: Int!
-    email: String!
-    vehicleType: String!
+    email: Email!
+    vehicle: Vehicle!
+  }
+  
+  type Email{
+    address: String!
+  }
+  
+  type Vehicle{
+    type: String!
   }
 
   type Token{

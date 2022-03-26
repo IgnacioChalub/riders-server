@@ -1,6 +1,7 @@
 import ICallerRepository from "../../domain/repositories/caller.repository";
 import {Caller} from "../../domain/entities/caller";
 import {getRepository} from "typeorm";
+import Rider from "../../domain/entities/rider";
 
 
 class CallerDAO implements ICallerRepository{
@@ -12,20 +13,17 @@ class CallerDAO implements ICallerRepository{
         this.repository.save(caller).then(r => r);
     }
 
-    async getByDNIorEmail(DNI: number, email: string): Promise<Caller> {
+    async getByDNIorEmail(DNI: number, emailAddress: string): Promise<Caller> {
         return <Caller>await this.repository.createQueryBuilder(this.tableName)
             .where("caller.DNI = :DNI", {DNI: DNI})
-            .orWhere("caller.email = :email", {email: email})
+            .orWhere("caller.emailAddress = :emailAddress", {emailAddress: emailAddress})
             .getOne();
     }
 
-    async getByEmail(email: string): Promise<Caller> {
-        return <Caller>await this.repository.findOne({
-            where: {
-                // @ts-ignore
-                email: email
-            },
-        })
+    async getByEmail(emailAddress: string): Promise<Caller> {
+        return <Caller>await this.repository.createQueryBuilder(this.tableName)
+            .where("caller.emailAddress = :emailAddress", {emailAddress: emailAddress})
+            .getOne();
     }
 
     async getById(id: string): Promise<Caller> {
