@@ -1,6 +1,7 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
 import {Vehicle} from "./vehicle";
 import {Email} from "./email";
+import {Rating} from "./rating";
 
 @Entity()
 class Rider{
@@ -26,10 +27,10 @@ class Rider{
     @Column(() => Vehicle)
     private vehicle: Vehicle;
 
-    // @Column()
-    // private rating: number;
+    @Column(() => Rating)
+    private rating: Rating;
 
-    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, vehicle: Vehicle) {
+    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, vehicle: Vehicle, rating: Rating) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -37,7 +38,7 @@ class Rider{
         this.email = email;
         this.password = password;
         this.vehicle = vehicle;
-        //this.rating = rating;
+        this.rating = rating;
     }
 
     getId(): string{

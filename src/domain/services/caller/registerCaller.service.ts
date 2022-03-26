@@ -3,6 +3,7 @@ import IPasswordHasher from "../../infrastructureServices/passwordHasher";
 import IIdGenerator from "../../infrastructureServices/idGenerator";
 import {Caller} from "../../entities/caller";
 import {Email} from "../../entities/email";
+import {Rating} from "../../entities/rating";
 
 class RegisterCallerService{
 
@@ -25,7 +26,7 @@ class RegisterCallerService{
 
         const hashedPassword = this.passwordHasher.hash(password);
         const id: string = await this.generateValidId();
-        const newCaller: Caller = new Caller(id, name, surname, DNI, Email.create(email), hashedPassword);
+        const newCaller: Caller = new Caller(id, name, surname, DNI, Email.create(email), hashedPassword, Rating.create());
         this.callerRepository.save(newCaller);
         return newCaller;
     }

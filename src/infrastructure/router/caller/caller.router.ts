@@ -32,8 +32,18 @@ const schema = buildSchema(`
     name: String!
     surname: String!
     DNI: Int!
-    email: String!
+    email: Email!
+    rating: Rating!
   }
+
+  type Email{
+    address: String!
+  }
+  
+  type Rating{
+    stars: Int!
+  }
+
 
   type Token{
     token: String!

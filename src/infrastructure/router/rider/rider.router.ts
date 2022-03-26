@@ -38,6 +38,7 @@ const schema = buildSchema(`
     DNI: Int!
     email: Email!
     vehicle: Vehicle!
+    rating: Rating!
   }
   
   type Email{
@@ -46,6 +47,10 @@ const schema = buildSchema(`
   
   type Vehicle{
     type: String!
+  }
+  
+  type Rating{
+    stars: Int!
   }
 
   type Token{

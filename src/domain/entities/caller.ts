@@ -1,5 +1,6 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
 import {Email} from "./email";
+import {Rating} from "./rating";
 
 @Entity()
 class Caller{
@@ -22,13 +23,17 @@ class Caller{
     @Column()
     private readonly password: string;
 
-    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string) {
+    @Column(() => Rating)
+    private rating: Rating;
+
+    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, rating: Rating) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.DNI = DNI;
         this.email = email;
         this.password = password;
+        this.rating = rating;
     }
 
     getId(): string{

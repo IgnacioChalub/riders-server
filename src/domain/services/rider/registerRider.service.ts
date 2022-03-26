@@ -4,6 +4,7 @@ import IIdGenerator from "../../infrastructureServices/idGenerator";
 import IRiderRepository from "../../repositories/rider.repository";
 import {Vehicle} from "../../entities/vehicle";
 import {Email} from "../../entities/email";
+import {Rating} from "../../entities/rating";
 
 class RegisterRiderService{
 
@@ -28,7 +29,7 @@ class RegisterRiderService{
 
         const hashedPassword = this.passwordHasher.hash(password);
         const id: string = await this.generateValidId();
-        const newRider: Rider = new Rider(id, name, surname, DNI, Email.create(email), hashedPassword, vehicle);
+        const newRider: Rider = new Rider(id, name, surname, DNI, Email.create(email), hashedPassword, vehicle, Rating.create());
 
         this.riderRepository.save(newRider);
         return newRider;
