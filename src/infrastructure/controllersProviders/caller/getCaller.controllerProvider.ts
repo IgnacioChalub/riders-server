@@ -1,4 +1,3 @@
-import LogInCallerController from "../../../aplication/controllers/caller/logInCaller.controller";
 import GetCallerController from "../../../aplication/controllers/caller/getCaller.controller";
 import ICallerRepository from "../../../domain/repositories/caller.repository";
 import CallerDAO from "../../persistance/callerDAO";

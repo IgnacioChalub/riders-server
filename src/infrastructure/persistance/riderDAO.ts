@@ -1,7 +1,7 @@
 import IRiderRepository from "../../domain/repositories/rider.repository";
 import {getRepository} from "typeorm";
 import Rider from "../../domain/entities/rider";
-import {Email} from "../../domain/entities/email";
+import IdGeneratorImplementation from "../services/idGeneratorImplementation";
 
 class RiderDAO implements IRiderRepository{
 
@@ -32,6 +32,17 @@ class RiderDAO implements IRiderRepository{
                 id: id
             },
         })
+    }
+
+    async generateId(): Promise<string> {
+        const idGenerator: IdGeneratorImplementation = new IdGeneratorImplementation();
+        let rider;
+        let id;
+        do {
+            id = idGenerator.generateId();
+            rider = await this.getById(id);
+        } while (rider)
+        return id;
     }
 }
 

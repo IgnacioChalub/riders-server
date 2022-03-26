@@ -1,6 +1,5 @@
 import ICallerRepository from "../../repositories/caller.repository";
 import IPasswordHasher from "../../infrastructureServices/passwordHasher";
-import IIdGenerator from "../../infrastructureServices/idGenerator";
 import {Caller} from "../../entities/caller";
 import {Email} from "../../entities/email";
 import {Rating} from "../../entities/rating";
@@ -9,12 +8,10 @@ class RegisterCallerService{
 
     private callerRepository: ICallerRepository;
     private passwordHasher: IPasswordHasher;
-    private idGenerator: IIdGenerator;
 
-    constructor(callerRepository: ICallerRepository, passwordHasher: IPasswordHasher, idGenerator: IIdGenerator) {
+    constructor(callerRepository: ICallerRepository, passwordHasher: IPasswordHasher) {
         this.callerRepository = callerRepository;
         this.passwordHasher = passwordHasher;
-        this.idGenerator = idGenerator;
     }
 
     async registerCaller(name: string, surname: string, DNI: number, email: string, password: string): Promise<Caller> {
@@ -25,20 +22,10 @@ class RegisterCallerService{
         if (caller) throw Error("DNI or email not available");
 
         const hashedPassword = this.passwordHasher.hash(password);
-        const id: string = await this.generateValidId();
+        const id: string = await this.callerRepository.generateId();
         const newCaller: Caller = new Caller(id, name, surname, DNI, Email.create(email), hashedPassword, Rating.create());
         this.callerRepository.save(newCaller);
         return newCaller;
-    }
-
-    private async generateValidId(): Promise<string> {
-        let caller;
-        let id;
-        do {
-            id = this.idGenerator.generateId();
-            caller = await this.callerRepository.getById(id);
-        } while (caller)
-        return id;
     }
 }
 

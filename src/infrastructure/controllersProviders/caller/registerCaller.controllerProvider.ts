@@ -2,8 +2,6 @@ import RegisterCallerController from "../../../aplication/controllers/caller/reg
 import RegisterCallerService from "../../../domain/services/caller/registerCaller.service";
 import ICallerRepository from "../../../domain/repositories/caller.repository";
 import CallerDAO from "../../persistance/callerDAO";
-import IIdGenerator from "../../../domain/infrastructureServices/idGenerator";
-import IdGeneratorImplementation from "../../services/idGeneratorImplementation";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
 import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
 
@@ -13,10 +11,9 @@ class RegisterCallerControllerProvider{
 
     static create(): RegisterCallerController{
         const callerRepository: ICallerRepository = new CallerDAO();
-        const idGenerator: IIdGenerator = new IdGeneratorImplementation();
         const passwordHasher: IPasswordHasher = new PasswordHasherImplementation();
 
-        const registerCallerService: RegisterCallerService = new RegisterCallerService(callerRepository, passwordHasher, idGenerator);
+        const registerCallerService: RegisterCallerService = new RegisterCallerService(callerRepository, passwordHasher);
         return new RegisterCallerController(registerCallerService);
     }
 

@@ -1,6 +1,5 @@
 import Rider from "../../entities/rider";
 import IPasswordHasher from "../../infrastructureServices/passwordHasher";
-import IIdGenerator from "../../infrastructureServices/idGenerator";
 import IRiderRepository from "../../repositories/rider.repository";
 import {Vehicle} from "../../entities/vehicle";
 import {Email} from "../../entities/email";
@@ -10,12 +9,10 @@ class RegisterRiderService{
 
     private riderRepository: IRiderRepository;
     private passwordHasher: IPasswordHasher;
-    private idGenerator: IIdGenerator;
 
-    constructor(riderRepository: IRiderRepository, passwordHasher: IPasswordHasher, idGenerator: IIdGenerator) {
+    constructor(riderRepository: IRiderRepository, passwordHasher: IPasswordHasher) {
         this.riderRepository = riderRepository;
         this.passwordHasher = passwordHasher;
-        this.idGenerator = idGenerator;
     }
 
     async register(name: string, surname: string, DNI: number, email: string, password: string, vehicleType: string): Promise<Rider>{
@@ -28,22 +25,13 @@ class RegisterRiderService{
         const vehicle: Vehicle = Vehicle.createVehicle(vehicleType);
 
         const hashedPassword = this.passwordHasher.hash(password);
-        const id: string = await this.generateValidId();
+        const id: string = await this.riderRepository.generateId();
         const newRider: Rider = new Rider(id, name, surname, DNI, Email.create(email), hashedPassword, vehicle, Rating.create());
 
         this.riderRepository.save(newRider);
         return newRider;
     }
 
-    private async generateValidId(): Promise<string> {
-        let caller;
-        let id;
-        do {
-            id = this.idGenerator.generateId();
-            caller = await this.riderRepository.getById(id);
-        } while (caller)
-        return id;
-    }
 
 }
 

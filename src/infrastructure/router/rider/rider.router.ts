@@ -3,7 +3,6 @@ import {buildSchema} from "graphql";
 import registerRider from "./registerRider.route";
 import logInRider from "./logInRider.route";
 import getRider from "./getRider.route";
-import {Request} from "express";
 
 const router = express.Router();
 

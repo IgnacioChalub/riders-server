@@ -1,5 +1,3 @@
-import GetRiderService from "../../../domain/services/rider/getRider.service";
-import Rider from "../../../domain/entities/rider";
 import GetCallerService from "../../../domain/services/caller/getCaller.service";
 import {Caller} from "../../../domain/entities/caller";
 

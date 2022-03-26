@@ -1,11 +1,10 @@
 import RegisterRiderController from "../../../aplication/controllers/rider/registerRider.controller";
 import IRiderRepository from "../../../domain/repositories/rider.repository";
-import RiderDAO from "../../persistance/riderDAO";
-import IIdGenerator from "../../../domain/infrastructureServices/idGenerator";
 import IdGeneratorImplementation from "../../services/idGeneratorImplementation";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
 import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
 import RegisterRiderService from "../../../domain/services/rider/registerRider.service";
+import RiderDAO from "../../persistance/riderDAO";
 
 class RegisterRiderControllerProvider{
 
@@ -13,10 +12,9 @@ class RegisterRiderControllerProvider{
 
     static create(): RegisterRiderController{
         const riderRepository: IRiderRepository = new RiderDAO();
-        const idGenerator: IIdGenerator = new IdGeneratorImplementation();
         const passwordHasher: IPasswordHasher = new PasswordHasherImplementation();
 
-        const registerRiderService: RegisterRiderService = new RegisterRiderService(riderRepository, passwordHasher, idGenerator);
+        const registerRiderService: RegisterRiderService = new RegisterRiderService(riderRepository, passwordHasher);
         return new RegisterRiderController(registerRiderService);
     }
 

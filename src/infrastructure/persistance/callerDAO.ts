@@ -1,7 +1,7 @@
 import ICallerRepository from "../../domain/repositories/caller.repository";
 import {Caller} from "../../domain/entities/caller";
 import {getRepository} from "typeorm";
-import Rider from "../../domain/entities/rider";
+import IdGeneratorImplementation from "../services/idGeneratorImplementation";
 
 
 class CallerDAO implements ICallerRepository{
@@ -33,6 +33,17 @@ class CallerDAO implements ICallerRepository{
                 id: id
             },
         })
+    }
+
+    async generateId(): Promise<string> {
+        const idGenerator: IdGeneratorImplementation = new IdGeneratorImplementation();
+        let caller;
+        let id;
+        do {
+            id = idGenerator.generateId();
+            caller = await this.getById(id);
+        } while (caller)
+        return id;
     }
 }
 
