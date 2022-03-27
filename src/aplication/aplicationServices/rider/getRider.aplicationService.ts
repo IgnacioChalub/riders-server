@@ -1,7 +1,7 @@
-import IRiderRepository from "../../repositories/rider.repository";
-import Rider from "../../entities/rider";
+import IRiderRepository from "../../../domain/repositories/rider.repository";
+import Rider from "../../../domain/entities/rider";
 
-class GetRiderService {
+class GetRiderAplicationService{
 
     private riderRepository: IRiderRepository;
 
@@ -14,4 +14,4 @@ class GetRiderService {
     }
 }
 
-export default GetRiderService;
+export default GetRiderAplicationService;

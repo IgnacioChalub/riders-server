@@ -1,9 +1,9 @@
-import ILogger from "../../infrastructureServices/logger";
-import IPasswordHasher from "../../infrastructureServices/passwordHasher";
-import IRiderRepository from "../../repositories/rider.repository";
-import Rider from "../../entities/rider";
+import ILogger from "../../../domain/infrastructureServices/logger";
+import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
+import IRiderRepository from "../../../domain/repositories/rider.repository";
+import Rider from "../../../domain/entities/rider";
 
-class LogInRiderService{
+class LogInRiderAplicationService{
 
     private logger: ILogger;
     private passwordHasher: IPasswordHasher;
@@ -23,4 +23,4 @@ class LogInRiderService{
     }
 }
 
-export default LogInRiderService;
+export default LogInRiderAplicationService;

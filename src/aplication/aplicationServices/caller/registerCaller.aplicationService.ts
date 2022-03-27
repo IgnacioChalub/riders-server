@@ -17,6 +17,7 @@ class RegisterCallerAplicationService{
     async registerCaller(name: string, surname: string, DNI: number, email: string, password: string): Promise<Caller>{
         const caller: Caller = await this.callerRepository.getByDNIorEmail(DNI, email);
         if (caller) throw Error("DNI or email not available");
+
         const id: string = await this.callerRepository.generateId();
         const newCaller: Caller = await this.createCallerDomainService.createCaller(id, name, surname, DNI, email, password);
         this.callerRepository.save(newCaller);
