@@ -3,7 +3,7 @@ import PasswordHasherImplementation from "../../services/passwordHasherImplement
 import RegisterRiderAplicationService
     from "../../../aplication/aplicationServices/rider/registerRider.aplicationService";
 import Rider from "../../../domain/entities/rider";
-import IRiderRepository from "../../../domain/repositories/rider.repository";
+import IRiderRepository from "../../../aplication/repositories/rider.repository";
 import RiderDAO from "../../persistance/riderDAO";
 import CreateRiderDomainService from "../../../domain/services/rider/createRider.service";
 

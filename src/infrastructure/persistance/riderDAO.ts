@@ -1,4 +1,4 @@
-import IRiderRepository from "../../domain/repositories/rider.repository";
+import IRiderRepository from "../../aplication/repositories/rider.repository";
 import {getRepository} from "typeorm";
 import Rider from "../../domain/entities/rider";
 import IdGeneratorImplementation from "../services/idGeneratorImplementation";

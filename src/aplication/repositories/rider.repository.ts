@@ -1,4 +1,4 @@
-import Rider from "../entities/rider";
+import Rider from "../../domain/entities/rider";
 
 interface IRiderRepository{
     generateId(): Promise<string>;

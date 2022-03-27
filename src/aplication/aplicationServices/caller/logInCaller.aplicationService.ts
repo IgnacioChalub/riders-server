@@ -1,4 +1,4 @@
-import ILogger from "../../../domain/infrastructureServices/logger";
+import ILogger from "../../infrastructureServices/logger";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
 import ICallerRepository from "../../repositories/caller.repository";
 import {Caller} from "../../../domain/entities/caller";

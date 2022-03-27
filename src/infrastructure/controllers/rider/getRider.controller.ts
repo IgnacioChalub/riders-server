@@ -1,5 +1,5 @@
 import GetRiderAplicationService from "../../../aplication/aplicationServices/rider/getRider.aplicationService";
-import IRiderRepository from "../../../domain/repositories/rider.repository";
+import IRiderRepository from "../../../aplication/repositories/rider.repository";
 import RiderDAO from "../../persistance/riderDAO";
 import Rider from "../../../domain/entities/rider";
 

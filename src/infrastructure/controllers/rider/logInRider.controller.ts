@@ -1,9 +1,9 @@
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
 import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
-import IRiderRepository from "../../../domain/repositories/rider.repository";
+import IRiderRepository from "../../../aplication/repositories/rider.repository";
 import RiderDAO from "../../persistance/riderDAO";
 import LogInRiderAplicationService from "../../../aplication/aplicationServices/rider/logInRider.aplicationService";
-import ILogger from "../../../domain/infrastructureServices/logger";
+import ILogger from "../../../aplication/infrastructureServices/logger";
 import JWTLogger from "../../services/logger";
 
 class LogInRiderController{

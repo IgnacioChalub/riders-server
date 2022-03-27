@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import ILogger from "../../domain/infrastructureServices/logger";
+import ILogger from "../../aplication/infrastructureServices/logger";
 
 class JWTLogger implements ILogger{
     login(accountId: string, accountType: string): string {

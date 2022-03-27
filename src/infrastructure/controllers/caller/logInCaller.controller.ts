@@ -3,7 +3,7 @@ import CallerDAO from "../../persistance/callerDAO";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
 import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
 import LogInCallerAplicationService from "../../../aplication/aplicationServices/caller/logInCaller.aplicationService";
-import ILogger from "../../../domain/infrastructureServices/logger";
+import ILogger from "../../../aplication/infrastructureServices/logger";
 import JWTLogger from "../../services/logger";
 
 class LogInCallerController{

@@ -1,4 +1,4 @@
-import IRiderRepository from "../../../domain/repositories/rider.repository";
+import IRiderRepository from "../../repositories/rider.repository";
 import CreateRiderDomainService from "../../../domain/services/rider/createRider.service";
 import Rider from "../../../domain/entities/rider";
 

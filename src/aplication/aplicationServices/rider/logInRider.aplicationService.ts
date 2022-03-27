@@ -1,6 +1,6 @@
-import ILogger from "../../../domain/infrastructureServices/logger";
+import ILogger from "../../infrastructureServices/logger";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
-import IRiderRepository from "../../../domain/repositories/rider.repository";
+import IRiderRepository from "../../repositories/rider.repository";
 import Rider from "../../../domain/entities/rider";
 
 class LogInRiderAplicationService{

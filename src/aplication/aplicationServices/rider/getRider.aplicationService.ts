@@ -1,4 +1,4 @@
-import IRiderRepository from "../../../domain/repositories/rider.repository";
+import IRiderRepository from "../../repositories/rider.repository";
 import Rider from "../../../domain/entities/rider";
 
 class GetRiderAplicationService{
