@@ -14,7 +14,7 @@ class LogInCallerAplicationService{
         this.callerRepository = callerRepository;
     }
 
-    async logIn(email: string, password: string): Promise<string> {
+    async run(email: string, password: string): Promise<string> {
         const caller: Caller = await this.callerRepository.getByEmail(email);
         if(!caller) throw Error('Incorrect email or password');
         if(!await this.passwordHasher.compare(password, caller.getPassword())) throw Error('Incorrect email or password');

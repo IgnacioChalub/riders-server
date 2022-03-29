@@ -31,8 +31,8 @@ class LogInCallerController{
         return this.logInCallerController;
     }
 
-    async logIn(email: string, password: string): Promise<string>{
-        return await this.logInCallerAplicationService.logIn(email, password);
+    async run(email: string, password: string): Promise<string>{
+        return await this.logInCallerAplicationService.run(email, password);
     }
 
 }

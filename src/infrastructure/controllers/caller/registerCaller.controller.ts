@@ -33,8 +33,8 @@ class RegisterCallerController{
         return this.registerCallerController;
     }
 
-    async registerCaller(name: string, surname: string, DNI: number, email: string, password: string): Promise<Caller>{
-        return await this.registerCallerAplicationService.registerCaller(name, surname, DNI, email, password);
+    async run(name: string, surname: string, DNI: number, email: string, password: string): Promise<Caller>{
+        return await this.registerCallerAplicationService.run(name, surname, DNI, email, password);
     }
 
 }

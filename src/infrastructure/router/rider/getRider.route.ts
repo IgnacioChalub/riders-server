@@ -6,7 +6,7 @@ import GetRiderController from "../../controllers/rider/getRider.controller";
 const getRider = async (args: any, req: Request): Promise<Rider> => {
     const token: string = <string>req.headers['auth-token'];
     const id: string = tokenValidation(token, "rider");
-    return GetRiderController.getController().getRider(id);
+    return GetRiderController.getController().run(id);
 }
 
 export default getRider;

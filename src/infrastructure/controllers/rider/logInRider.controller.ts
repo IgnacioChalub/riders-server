@@ -31,8 +31,8 @@ class LogInRiderController{
         return this.logInRiderController;
     }
 
-    async logIn(email: string, password: string): Promise<string>{
-        return await this.logInRiderAplicationService.logIn(email, password);
+    async run(email: string, password: string): Promise<string>{
+        return await this.logInRiderAplicationService.run(email, password);
     }
 
 }

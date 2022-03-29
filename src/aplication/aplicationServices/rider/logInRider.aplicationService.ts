@@ -15,7 +15,7 @@ class LogInRiderAplicationService{
         this.riderRepository = riderRepository;
     }
 
-    async logIn(email: string, password: string): Promise<string> {
+    async run(email: string, password: string): Promise<string> {
         const rider: Rider = await this.riderRepository.getByEmail(email);
         if(!rider) throw Error('Incorrect email or password');
         if(!await this.passwordHasher.compare(password, rider.getPassword())) throw Error('Incorrect email or password');

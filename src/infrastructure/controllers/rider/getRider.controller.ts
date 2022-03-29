@@ -26,8 +26,8 @@ class GetRiderController{
         return this.getRiderController;
     }
 
-    async getRider(id: string): Promise<Rider>{
-        return await this.getRiderAplicationService.getRider(id);
+    async run(id: string): Promise<Rider>{
+        return await this.getRiderAplicationService.run(id);
     }
 }
 

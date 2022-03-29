@@ -32,8 +32,8 @@ class RegisterRiderController{
         return this.registerRiderController;
     }
 
-    async registerRider(name: string, surname: string, DNI: number, email: string, password: string, vehicleType: string): Promise<Rider>{
-        return await this.registerRiderAplicationService.registerRider(name, surname, DNI, email, password, vehicleType);
+    async run(name: string, surname: string, DNI: number, email: string, password: string, vehicleType: string): Promise<Rider>{
+        return await this.registerRiderAplicationService.run(name, surname, DNI, email, password, vehicleType);
     }
 
 }

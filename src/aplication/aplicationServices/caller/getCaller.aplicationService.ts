@@ -9,7 +9,7 @@ class GetCallerAplicationService{
         this.callerRepository = callerRepository;
     }
 
-    async getCaller(id: string): Promise<Caller>{
+    async run(id: string): Promise<Caller>{
         return await this.callerRepository.getById(id);
     }
 }

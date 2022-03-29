@@ -9,7 +9,7 @@ class GetRiderAplicationService{
         this.riderRepository = riderRepository;
     }
 
-    async getRider(id: string): Promise<Rider>{
+    async run(id: string): Promise<Rider>{
         return await this.riderRepository.getById(id);
     }
 }

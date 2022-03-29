@@ -26,8 +26,8 @@ class GetCallerController{
         return this.getCallerController;
     }
 
-    async getCaller(id: string): Promise<Caller>{
-        return await this.getCallerAplicationService.getCaller(id);
+    async run(id: string): Promise<Caller>{
+        return await this.getCallerAplicationService.run(id);
     }
 }
 

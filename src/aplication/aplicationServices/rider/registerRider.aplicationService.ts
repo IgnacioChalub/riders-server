@@ -13,7 +13,7 @@ class RegisterRiderAplicationService{
         this.createRiderDomainService = createRiderDomainService;
     }
 
-    async registerRider(name: string, surname: string, DNI: number, email: string, password: string, vehicleType: string): Promise<Rider> {
+    async run(name: string, surname: string, DNI: number, email: string, password: string, vehicleType: string): Promise<Rider> {
         const rider: Rider = await this.riderRepository.getByDNIorEmail(DNI, email);
         if (rider) throw Error("DNI or email not available");
 
