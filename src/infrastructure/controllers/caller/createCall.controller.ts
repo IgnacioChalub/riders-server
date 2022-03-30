@@ -2,7 +2,7 @@ import ICallerRepository from "../../../aplication/repositories/caller.repositor
 import CallerDAO from "../../persistance/callerDAO";
 import CreateCallAplicationService from "../../../aplication/aplicationServices/caller/createCall.aplicationService";
 import ICallRepository from "../../../aplication/repositories/call.repository";
-import CallMongodb from "../../persistance/callMongodb";
+import CallDAO from "../../persistance/CallDAO";
 import CreateCallDomainService from "../../../domain/services/caller/createCall.domainService";
 import Call from "../../../domain/entities/call";
 
@@ -17,7 +17,7 @@ class CreateCallController{
     }
 
     static create(): CreateCallController{
-        const callRepository: ICallRepository = new CallMongodb();
+        const callRepository: ICallRepository = new CallDAO();
         const callerRepository: ICallerRepository = new CallerDAO();
         const createCalDomainService: CreateCallDomainService = new CreateCallDomainService();
         const createCallAplicationService: CreateCallAplicationService = new CreateCallAplicationService(callRepository, callerRepository, createCalDomainService)
@@ -31,8 +31,8 @@ class CreateCallController{
         return this.createCallController;
     }
 
-    async run(callerId: string, vehicleTypes: string[], priceInCents: number, description: string, startAddress: string, finishAddress: string, startLat: number, startLong: number, finishLat: number, finishLong: number): Promise<Call>{
-        return await this.createCallAplicationService.run(callerId, vehicleTypes, priceInCents, description, startAddress, finishAddress, startLat, startLong, finishLat, finishLong);
+    async run(callerId: string, vehicleTypes: string[], priceInCents: number, description: string, bicycle: boolean, motorcycle: boolean, car: boolean, van: boolean, startAddress: string, finishAddress: string, startLat: number, startLong: number, finishLat: number, finishLong: number): Promise<Call>{
+        return await this.createCallAplicationService.run(callerId, vehicleTypes, priceInCents, description, bicycle, motorcycle, car, van, startAddress, finishAddress, startLat, startLong, finishLat, finishLong);
     }
 }
 

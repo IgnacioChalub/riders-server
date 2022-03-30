@@ -1,7 +1,14 @@
+import {Column} from "typeorm";
+
 class Location{
 
+    @Column()
     private address: string;
+
+    @Column()
     private lat: number;
+
+    @Column()
     private long: number;
 
     constructor(address: string, lat: number, long: number) {

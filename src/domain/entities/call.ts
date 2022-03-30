@@ -1,23 +1,43 @@
 import {Location} from "./location";
-import {Column, PrimaryColumn} from "typeorm";
+import {Column, Entity, PrimaryColumn} from "typeorm";
+import RequestedVehicles from "./requestedVehicles";
 
+@Entity()
 class Call{
 
+    @PrimaryColumn()
     private id: string;
+
+    @Column()
     private callerId: string;
+
+    @Column()
     private callerRatingStars: number;
-    private vehicleTypes: string[];
+
+
+    @Column(() => RequestedVehicles)
+    private requestedVehicles: RequestedVehicles;
+
+    @Column()
     private priceInCents: number;
+
+    @Column()
     private description: string;
+
+    @Column(() => Location)
     private startLocation: Location;
+
+    @Column(() => Location)
     private finishLocation: Location;
+
+    @Column()
     private active: boolean;
 
-    constructor(id: string, callerId: string, callerRatingStars: number, vehicleTypes: string[], priceInCents: number, description: string, startLocation: Location, finishLocation: Location, active: boolean) {
+    constructor(id: string, callerId: string, callerRatingStars: number, requestedVehicles: RequestedVehicles, priceInCents: number, description: string, startLocation: Location, finishLocation: Location, active: boolean) {
         this.id = id;
         this.callerId = callerId;
         this.callerRatingStars = callerRatingStars;
-        this.vehicleTypes = vehicleTypes;
+        this.requestedVehicles = requestedVehicles;
         this.priceInCents = priceInCents;
         this.description = description;
         this.startLocation = startLocation;

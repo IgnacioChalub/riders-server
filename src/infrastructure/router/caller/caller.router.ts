@@ -32,9 +32,12 @@ const schema = buildSchema(`
   }
   
   input CreateCallInput {
-    vehicleTypes: [String!]!
     priceInCents: Int!
     description: String!
+    bicycle: Boolean!
+    motorcycle: Boolean!
+    car: Boolean!
+    van: Boolean!
     startAddress: String!
     finishAddress: String!
     startLat: Int!
@@ -63,11 +66,18 @@ const schema = buildSchema(`
   type Call {
     id: String
     callerRatingStars: Int!
-    vehicleTypes: [String!]!
+    requestedVehicles: RequestedVehicles!
     priceInCents: Int!
     description: String!
     startLocation: Location!
     finishLocation:Location!
+  }
+  
+  type RequestedVehicles{
+    bicycle: Boolean!
+    motorcycle: Boolean!
+    car: Boolean!
+    van: Boolean!
   }
   
   type Location {

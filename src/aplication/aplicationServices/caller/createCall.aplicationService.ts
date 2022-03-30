@@ -4,6 +4,7 @@ import ICallerRepository from "../../repositories/caller.repository";
 import {Caller} from "../../../domain/entities/caller";
 import {Location} from "../../../domain/entities/location";
 import CreateCallDomainService from "../../../domain/services/caller/createCall.domainService";
+import RequestedVehicles from "../../../domain/entities/requestedVehicles";
 
 class CreateCallAplicationService{
 
@@ -17,12 +18,13 @@ class CreateCallAplicationService{
         this.createCallDomainService = createCallDomainService;
     }
 
-    async run(callerId: string, vehicleTypes: string[], priceInCents: number, description: string, startAddress: string, finishAddress: string, startLat: number, startLong: number, finishLat: number, finishLong: number): Promise<Call>{
+    async run(callerId: string, vehicleTypes: string[], priceInCents: number, description: string, bicycle: boolean, motorcycle: boolean, car: boolean, van: boolean, startAddress: string, finishAddress: string, startLat: number, startLong: number, finishLat: number, finishLong: number): Promise<Call>{
         const caller: Caller = await this.callerRepository.getById(callerId);
         const startLocation: Location = Location.create(startAddress, startLat, startLong);
         const finishLocation: Location = Location.create(finishAddress, finishLat, finishLong);
         const id: string = await this.callRepository.generateId();
-        const call: Call = this.createCallDomainService.run(id, caller, vehicleTypes, priceInCents, description, startLocation, finishLocation);
+        const requestedVehicles: RequestedVehicles = RequestedVehicles.create(bicycle, motorcycle, car, van);
+        const call: Call = this.createCallDomainService.run(id, caller, requestedVehicles, priceInCents, description, startLocation, finishLocation);
         this.callRepository.save(call);
         return call;
     }

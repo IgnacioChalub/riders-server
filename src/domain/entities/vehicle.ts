@@ -18,10 +18,10 @@ class Vehicle{
 
     static createVehicle(vehicleType: string): Vehicle{
         switch (vehicleType){
-            case "bicycle": return new Vehicle(VehicleTypes.BICYCLE);
-            case "motorcycle": return new Vehicle(VehicleTypes.MOTORCYCLE);
-            case "car": return new Vehicle(VehicleTypes.CAR);
-            case "van": return new Vehicle(VehicleTypes.VAN);
+            case VehicleTypes.BICYCLE: return new Vehicle(VehicleTypes.BICYCLE);
+            case VehicleTypes.MOTORCYCLE: return new Vehicle(VehicleTypes.MOTORCYCLE);
+            case VehicleTypes.CAR: return new Vehicle(VehicleTypes.CAR);
+            case VehicleTypes.VAN: return new Vehicle(VehicleTypes.VAN);
             default: throw Error("Invalid vehicle type");
         }
     }
