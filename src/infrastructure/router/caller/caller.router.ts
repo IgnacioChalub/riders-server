@@ -62,6 +62,7 @@ const schema = buildSchema(`
 
   type Call {
     id: String
+    callerRatingStars: Int!
     vehicleTypes: [String!]!
     priceInCents: Int!
     description: String!
