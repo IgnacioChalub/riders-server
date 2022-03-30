@@ -3,6 +3,7 @@ import {buildSchema} from "graphql";
 import registerCaller from "./registerCaller.route";
 import logInCaller from "./logInCaller.route";
 import getCaller from "./getCaller.route";
+import createCall from "./createCall.route";
 
 const router = express.Router();
 
@@ -12,7 +13,8 @@ const expressGraphql = require('express-graphql').graphqlHTTP;
 const root = {
     registerCaller,
     logInCaller,
-    getCaller
+    getCaller,
+    createCall
 };
 
 const schema = buildSchema(`
@@ -30,7 +32,7 @@ const schema = buildSchema(`
   }
   
   input CreateCallInput {
-    vehicleTypes: String[]!
+    vehicleTypes: [String!]!
     priceInCents: Int!
     description: String!
     startAddress: String!
@@ -59,15 +61,18 @@ const schema = buildSchema(`
   }
 
   type Call {
-    vehicleTypes: String[]!
+    id: String
+    vehicleTypes: [String!]!
     priceInCents: Int!
     description: String!
-    startAddress: String!
-    finishAddress: String!
-    startLat: Int!
-    startLong: Int!
-    finishLat: Int!
-    finishLong: Int! 
+    startLocation: Location!
+    finishLocation:Location!
+  }
+  
+  type Location {
+    address: String!
+    lat: Int!
+    long: Int!
   }
 
   type Token{

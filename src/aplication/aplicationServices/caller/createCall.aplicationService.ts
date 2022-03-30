@@ -22,7 +22,9 @@ class CreateCallAplicationService{
         const startLocation: Location = Location.create(startAddress, startLat, startLong);
         const finishLocation: Location = Location.create(finishAddress, finishLat, finishLong);
         const id: string = await this.callRepository.generateId();
-        return this.createCallDomainService.run(id, caller, vehicleTypes, priceInCents, description, startLocation, finishLocation);
+        const call: Call = this.createCallDomainService.run(id, caller, vehicleTypes, priceInCents, description, startLocation, finishLocation);
+        this.callRepository.save(call);
+        return call;
     }
 
 }
