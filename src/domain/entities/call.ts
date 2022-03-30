@@ -1,4 +1,5 @@
 import {Location} from "./location";
+import {Column, PrimaryColumn} from "typeorm";
 
 class Call{
 
@@ -10,8 +11,9 @@ class Call{
     private description: string;
     private startLocation: Location;
     private finishLocation: Location;
+    private active: boolean;
 
-    constructor(id: string, callerId: string, callerRatingStars: number, vehicleTypes: string[], priceInCents: number, description: string, startLocation: Location, finishLocation: Location) {
+    constructor(id: string, callerId: string, callerRatingStars: number, vehicleTypes: string[], priceInCents: number, description: string, startLocation: Location, finishLocation: Location, active: boolean) {
         this.id = id;
         this.callerId = callerId;
         this.callerRatingStars = callerRatingStars;
@@ -20,6 +22,7 @@ class Call{
         this.description = description;
         this.startLocation = startLocation;
         this.finishLocation = finishLocation;
+        this.active = active;
     }
 }
 

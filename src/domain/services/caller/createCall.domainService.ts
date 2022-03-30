@@ -8,7 +8,7 @@ class CreateCallDomainService{
     run(id: string, caller: Caller, vehicleTypes: string[], priceInCents: number, description: string, startLocation: Location, finishLocation: Location): Call{
         if(priceInCents < 0) throw Error("Price can not below 0");
         if(!this.validateVehicles(vehicleTypes)) throw Error('Invalid vehicle type');
-        return new Call(id, caller.getId(), caller.getRatingStart(), vehicleTypes, priceInCents, description, startLocation, finishLocation);
+        return new Call(id, caller.getId(), caller.getRatingStart(), vehicleTypes, priceInCents, description, startLocation, finishLocation, true);
     }
 
     validateVehicles(vehicleTypes: string[]): boolean{
