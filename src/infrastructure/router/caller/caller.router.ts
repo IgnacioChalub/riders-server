@@ -28,6 +28,18 @@ const schema = buildSchema(`
     email: String!
     password: String!
   }
+  
+  input CreateCallInput {
+    vehicleTypes: String[]!
+    priceInCents: Int!
+    description: String!
+    startAddress: String!
+    finishAddress: String!
+    startLat: Int!
+    startLong: Int!
+    finishLat: Int!
+    finishLong: Int!
+  }
 
   type Caller {
     id: String!
@@ -46,6 +58,17 @@ const schema = buildSchema(`
     stars: Int!
   }
 
+  type Call {
+    vehicleTypes: String[]!
+    priceInCents: Int!
+    description: String!
+    startAddress: String!
+    finishAddress: String!
+    startLat: Int!
+    startLong: Int!
+    finishLat: Int!
+    finishLong: Int! 
+  }
 
   type Token{
     token: String!
@@ -58,6 +81,7 @@ const schema = buildSchema(`
   type Mutation {
     registerCaller(input: RegisterCallerInput): Caller
     logInCaller(input: LogInCallerInput): Token
+    createCall(input: CreateCallInput): Call
   }
 `);
 
