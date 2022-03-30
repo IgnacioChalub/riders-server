@@ -1,5 +1,12 @@
 import {Column} from "typeorm";
 
+export enum VehicleTypes{
+    BICYCLE= "bicycle",
+    MOTORCYCLE= "motorcycle",
+    CAR= "car",
+    VAN= "van"
+}
+
 class Vehicle{
 
     @Column()
@@ -11,10 +18,10 @@ class Vehicle{
 
     static createVehicle(vehicleType: string): Vehicle{
         switch (vehicleType){
-            case "bicycle": return new Vehicle("bicycle");
-            case "motorcycle": return new Vehicle("motorcycle");
-            case "car": return new Vehicle("car");
-            case "van": return new Vehicle("van");
+            case "bicycle": return new Vehicle(VehicleTypes.BICYCLE);
+            case "motorcycle": return new Vehicle(VehicleTypes.MOTORCYCLE);
+            case "car": return new Vehicle(VehicleTypes.CAR);
+            case "van": return new Vehicle(VehicleTypes.VAN);
             default: throw Error("Invalid vehicle type");
         }
     }

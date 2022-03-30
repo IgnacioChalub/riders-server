@@ -44,6 +44,10 @@ class Caller{
         return this.password;
     }
 
+    getRatingStart(): number{
+        return this.rating.getStars();
+    }
+
 }
 
 export {Caller};

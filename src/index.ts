@@ -1,5 +1,6 @@
 import app from "./app";
 import runDbConnection from "./infrastructure/db/database";
+import CreateCallDomainService from "./domain/services/caller/createCall.domainService";
 
 const main = (): void => {
     const PORT = app.get('port')
