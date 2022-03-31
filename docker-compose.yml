@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  db:
+    container_name: postgres
+    image: postgres
+    ports:
+      - '5432:${DB_PORT}'
+    volumes:
+      - data:/data/db
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5454:5454/tcp"
+    depends_on:
+      - db
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mydomain.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+      - PGADMIN_LISTEN_PORT=5454
+
+volumes:
+  data: {}

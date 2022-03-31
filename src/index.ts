@@ -9,4 +9,3 @@ const main = (): void => {
 };
 
 main();
-console.log("Alejo demitropulos")

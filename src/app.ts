@@ -1,6 +1,7 @@
 import express, {Application} from 'express';
 import bodyParser from "body-parser";
 import "reflect-metadata";
+import 'dotenv/config'
 import {callerRouter} from "./infrastructure/router/caller/caller.router";
 import {riderRouter} from "./infrastructure/router/rider/rider.router";
 

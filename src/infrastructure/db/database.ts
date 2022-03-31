@@ -2,6 +2,7 @@ import {getConnectionManager} from "typeorm";
 import {Caller} from "../../domain/entities/caller";
 import Rider from "../../domain/entities/rider";
 import Call from "../../domain/entities/call";
+import 'dotenv/config'
 
 const runDbConnection = async (): Promise<void> => {
     const connectionManager = getConnectionManager();
@@ -9,11 +10,11 @@ const runDbConnection = async (): Promise<void> => {
         // connection name
         name: "db",
         type: "postgres",
-        host: "localhost",
+        host: process.env.DB_HOST,
         port: 5432,
-        username: "postgres",
-        password: "password",
-        database: "riders-database",
+        username: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
         entities: [
             Caller,
             Rider,
