@@ -1,12 +1,11 @@
 import ICallerRepository from "../../aplication/repositories/caller.repository";
 import {Caller} from "../../domain/entities/caller";
-import {getRepository} from "typeorm";
 import IdGeneratorImplementation from "../services/idGeneratorImplementation";
-
+import {AppDataSource} from "../db/database";
 
 class CallerDAO implements ICallerRepository{
 
-    private repository = getRepository(Caller, "db");
+    private repository = AppDataSource.getRepository(Caller);
     private tableName = "caller";
 
     save(caller: Caller): void {
@@ -30,7 +29,7 @@ class CallerDAO implements ICallerRepository{
         return <Caller>await this.repository.findOne({
             where: {
                 // @ts-ignore
-                id: id
+                id: id,
             },
         })
     }

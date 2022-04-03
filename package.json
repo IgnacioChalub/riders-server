@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc && node dist/index.js",
     "dev": "nodemon -L -e ts --exec \"npm run build && npm start\"",
-    "build": "tsc"
+    "build": "tsc",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "graphql": "^16.3.0",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3",
+    "redis": "^3.1.2",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.0"
   },

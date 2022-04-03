@@ -1,11 +1,11 @@
 import IRiderRepository from "../../aplication/repositories/rider.repository";
-import {getRepository} from "typeorm";
 import Rider from "../../domain/entities/rider";
 import IdGeneratorImplementation from "../services/idGeneratorImplementation";
+import {AppDataSource} from "../db/database";
 
 class RiderDAO implements IRiderRepository{
 
-    private repository = getRepository(Rider, "db");
+    private repository = AppDataSource.getRepository(Rider);
     private tableName = "rider";
 
     save(rider: Rider): void {

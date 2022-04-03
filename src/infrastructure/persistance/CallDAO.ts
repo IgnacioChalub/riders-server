@@ -1,25 +1,24 @@
 import ICallRepository from "../../aplication/repositories/call.repository";
 import Call from "../../domain/entities/call";
-import {getRepository} from "typeorm";
-import {Caller} from "../../domain/entities/caller";
 import IdGeneratorImplementation from "../services/idGeneratorImplementation";
+import {AppDataSource} from "../db/database";
 
 class CallDAO implements ICallRepository{
 
-    private repository = getRepository(Call, "db");
+    private repository = AppDataSource.getRepository(Call);
     private tableName = "call";
 
     save(call: Call): void {
-        this.repository.save(call).then();
+        this.repository.save(call).then()
     }
 
     async getById(id: string): Promise<Call> {
         return <Call>await this.repository.findOne({
-            where: {
-                // @ts-ignore
-                id: id
-            },
-        })
+                where: {
+                    // @ts-ignore
+                    id: id,
+                },
+            })
     }
 
     async generateId(): Promise<string> {
