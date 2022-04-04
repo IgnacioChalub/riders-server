@@ -1,6 +1,7 @@
 import {Location} from "./location";
-import {Column, Entity, PrimaryColumn} from "typeorm";
+import {Column, Entity, JoinColumn, OneToOne, PrimaryColumn} from "typeorm";
 import RequestedVehicles from "./requestedVehicles";
+
 
 @Entity()
 class Call{
@@ -24,11 +25,13 @@ class Call{
     @Column()
     private description: string;
 
-    @Column(() => Location)
-    private startLocation: Location;
+    @OneToOne(() => Location)
+    @JoinColumn()
+    private readonly startLocation: Location;
 
-    @Column(() => Location)
-    private finishLocation: Location;
+    @OneToOne(() => Location)
+    @JoinColumn()
+    private readonly finishLocation: Location;
 
     @Column()
     private active: boolean;
@@ -43,6 +46,18 @@ class Call{
         this.startLocation = startLocation;
         this.finishLocation = finishLocation;
         this.active = active;
+    }
+
+    isInRadius(riderLat: number, riderLong: number, km: number): boolean{
+        return this.startLocation.isInRadius(riderLat, riderLong, km);
+    }
+
+    getStartLocation(): Location{
+        return this.startLocation;
+    }
+
+    getFinishLocation(): Location{
+        return this.finishLocation;
     }
 }
 

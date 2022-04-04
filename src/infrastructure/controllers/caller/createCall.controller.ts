@@ -2,7 +2,7 @@ import ICallerRepository from "../../../aplication/repositories/caller.repositor
 import CallerDAO from "../../persistance/callerDAO";
 import CreateCallAplicationService from "../../../aplication/aplicationServices/caller/createCall.aplicationService";
 import ICallRepository from "../../../aplication/repositories/call.repository";
-import CallDAO from "../../persistance/CallDAO";
+import CallDAO from "../../persistance/callDAO";
 import CreateCallDomainService from "../../../domain/services/caller/createCall.domainService";
 import Call from "../../../domain/entities/call";
 

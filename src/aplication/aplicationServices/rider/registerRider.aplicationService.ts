@@ -18,7 +18,7 @@ class RegisterRiderAplicationService{
         if (rider) throw Error("DNI or email not available");
 
         const id: string = await this.riderRepository.generateId();
-        const newRider: Rider = await this.createRiderDomainService.createRider(id, name, surname, DNI, email, password, vehicleType);
+        const newRider: Rider = await this.createRiderDomainService.run(id, name, surname, DNI, email, password, vehicleType);
         this.riderRepository.save(newRider);
         return newRider;
     }

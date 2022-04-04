@@ -11,7 +11,7 @@ class CreateCallerDomainService {
         this.passwordHasher = passwordHasher;
     }
 
-    async createCaller(id: string, name: string, surname: string, DNI: number, email: string, password: string): Promise<Caller> {
+    async run(id: string, name: string, surname: string, DNI: number, email: string, password: string): Promise<Caller> {
         if (password.length < 7) throw Error("Password should contain more than 7 characters");
         if (DNI < 0) throw Error("DNI not valid");
         const hashedPassword = this.passwordHasher.hash(password);

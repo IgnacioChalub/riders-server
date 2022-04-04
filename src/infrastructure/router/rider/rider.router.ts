@@ -3,6 +3,7 @@ import {buildSchema} from "graphql";
 import registerRider from "./registerRider.route";
 import logInRider from "./logInRider.route";
 import getRider from "./getRider.route";
+import getCalls from "./getCalls.route";
 
 const router = express.Router();
 
@@ -12,7 +13,8 @@ const expressGraphql = require('express-graphql').graphqlHTTP;
 const root = {
     registerRider,
     logInRider,
-    getRider
+    getRider,
+    getCalls
 };
 
 const schema = buildSchema(`
@@ -30,6 +32,11 @@ const schema = buildSchema(`
     password: String!
   }
   
+  input GetCallsInput {
+    lat: Float!
+    long: Float!
+  }
+  
   type Rider {
     id: String!
     name: String!
@@ -38,6 +45,29 @@ const schema = buildSchema(`
     email: Email!
     vehicle: Vehicle!
     rating: Rating!
+  }
+  
+  type Call {
+    id: String
+    callerRatingStars: Int!
+    requestedVehicles: RequestedVehicles!
+    priceInCents: Int!
+    description: String!
+    startLocation: Location!
+    finishLocation:Location!
+  }
+  
+  type RequestedVehicles{
+    bicycle: Boolean!
+    motorcycle: Boolean!
+    car: Boolean!
+    van: Boolean!
+  }
+  
+  type Location {
+    address: String!
+    lat: Float!
+    long: Float!
   }
   
   type Email{
@@ -63,6 +93,7 @@ const schema = buildSchema(`
   type Mutation {
     registerRider(input: RegisterRiderInput): Rider
     logInRider(input: LogInRiderInput): Token
+    getCalls(input: GetCallsInput): [Call]!
   }
 `);
 

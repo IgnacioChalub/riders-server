@@ -20,8 +20,8 @@ class CreateCallAplicationService{
 
     async run(callerId: string, vehicleTypes: string[], priceInCents: number, description: string, bicycle: boolean, motorcycle: boolean, car: boolean, van: boolean, startAddress: string, finishAddress: string, startLat: number, startLong: number, finishLat: number, finishLong: number): Promise<Call>{
         const caller: Caller = await this.callerRepository.getById(callerId);
-        const startLocation: Location = Location.create(startAddress, startLat, startLong);
-        const finishLocation: Location = Location.create(finishAddress, finishLat, finishLong);
+        const startLocation: Location = Location.create(await this.callRepository.generateLocationId(), startAddress, startLat, startLong);
+        const finishLocation: Location = Location.create(await this.callRepository.generateLocationId(), finishAddress, finishLat, finishLong);
         const id: string = await this.callRepository.generateId();
         const requestedVehicles: RequestedVehicles = RequestedVehicles.create(bicycle, motorcycle, car, van);
         const call: Call = this.createCallDomainService.run(id, caller, requestedVehicles, priceInCents, description, startLocation, finishLocation);

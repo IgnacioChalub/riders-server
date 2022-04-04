@@ -40,10 +40,10 @@ const schema = buildSchema(`
     van: Boolean!
     startAddress: String!
     finishAddress: String!
-    startLat: Int!
-    startLong: Int!
-    finishLat: Int!
-    finishLong: Int!
+    startLat: Float!
+    startLong: Float!
+    finishLat: Float!
+    finishLong: Float!
   }
 
   type Caller {
@@ -82,8 +82,8 @@ const schema = buildSchema(`
   
   type Location {
     address: String!
-    lat: Int!
-    long: Int!
+    lat: Float!
+    long: Float!
   }
 
   type Token{

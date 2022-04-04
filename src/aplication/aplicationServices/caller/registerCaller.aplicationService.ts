@@ -19,7 +19,7 @@ class RegisterCallerAplicationService{
         if (caller) throw Error("DNI or email not available");
 
         const id: string = await this.callerRepository.generateId();
-        const newCaller: Caller = await this.createCallerDomainService.createCaller(id, name, surname, DNI, email, password);
+        const newCaller: Caller = await this.createCallerDomainService.run(id, name, surname, DNI, email, password);
         this.callerRepository.save(newCaller);
         return newCaller;
     }
