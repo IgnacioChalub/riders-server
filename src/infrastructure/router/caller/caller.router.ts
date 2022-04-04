@@ -4,6 +4,7 @@ import registerCaller from "./registerCaller.route";
 import logInCaller from "./logInCaller.route";
 import getCaller from "./getCaller.route";
 import createCall from "./createCall.route";
+import getActiveCalls from "./getActiveCalls.route";
 
 const router = express.Router();
 
@@ -14,7 +15,8 @@ const root = {
     registerCaller,
     logInCaller,
     getCaller,
-    createCall
+    createCall,
+    getActiveCalls
 };
 
 const schema = buildSchema(`
@@ -92,6 +94,7 @@ const schema = buildSchema(`
 
   type Query {
     getCaller: Caller
+    getActiveCalls: [Call]!
   }
   
   type Mutation {

@@ -32,8 +32,5 @@ const runDbConnection = async (): Promise<void> => {
     await AppDataSource.initialize();
 };
 
-
-
 export {AppDataSource};
-
 export default runDbConnection;

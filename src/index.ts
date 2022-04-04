@@ -8,5 +8,4 @@ const main = (): void => {
     console.log('Listening on port ',PORT);
 };
 
-
 main();

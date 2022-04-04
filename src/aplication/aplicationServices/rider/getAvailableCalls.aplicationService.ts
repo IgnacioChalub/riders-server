@@ -3,7 +3,7 @@ import Call from "../../../domain/entities/call";
 import IRiderRepository from "../../repositories/rider.repository";
 import Rider from "../../../domain/entities/rider";
 
-class GetCallsAplicationService{
+class GetAvailableCallsAplicationService{
 
     private readonly callRepository: ICallRepository;
     private riderRepository: IRiderRepository;
@@ -24,4 +24,4 @@ class GetCallsAplicationService{
     }
 }
 
-export default GetCallsAplicationService;
+export default GetAvailableCallsAplicationService;

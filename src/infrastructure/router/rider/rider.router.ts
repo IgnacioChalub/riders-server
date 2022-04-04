@@ -3,7 +3,8 @@ import {buildSchema} from "graphql";
 import registerRider from "./registerRider.route";
 import logInRider from "./logInRider.route";
 import getRider from "./getRider.route";
-import getCalls from "./getCalls.route";
+import getCalls from "./getAvailableCalls.route";
+import getAvailableCalls from "./getAvailableCalls.route";
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ const root = {
     registerRider,
     logInRider,
     getRider,
-    getCalls
+    getAvailableCalls
 };
 
 const schema = buildSchema(`
@@ -32,7 +33,7 @@ const schema = buildSchema(`
     password: String!
   }
   
-  input GetCallsInput {
+  input GetAvailableCallsInput {
     lat: Float!
     long: Float!
   }
@@ -93,7 +94,7 @@ const schema = buildSchema(`
   type Mutation {
     registerRider(input: RegisterRiderInput): Rider
     logInRider(input: LogInRiderInput): Token
-    getCalls(input: GetCallsInput): [Call]!
+    getCalls(input: GetAvailableCallsInput): [Call]!
   }
 `);
 

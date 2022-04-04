@@ -5,6 +5,7 @@ import {AppDataSource} from "../db/database";
 import {LessThanOrEqual, MoreThanOrEqual} from "typeorm";
 import {Location} from "../../domain/entities/location";
 import {VehicleTypes} from "../../domain/entities/vehicle";
+import call from "../../domain/entities/call";
 
 class CallDAO implements ICallRepository{
 
@@ -52,6 +53,18 @@ class CallDAO implements ICallRepository{
             });
         } while (location)
         return id;
+    }
+
+    async getAllActiveCalls(callerId: string): Promise<Call[]>{
+        return <Call[]><unknown>await this.repository.find({
+            relations:['startLocation', 'finishLocation'],
+            where: {
+                // @ts-ignore
+                active: true,
+                // @ts-ignore
+                callerId: callerId
+            }
+        });
     }
 
     async getCallsInSquare(lat: number, long: number, km: number, vehicleType: string): Promise<Call[]> {
@@ -110,6 +123,8 @@ class CallDAO implements ICallRepository{
             relations:['startLocation', 'finishLocation'],
             where: {
                 // @ts-ignore
+                active: true,
+                // @ts-ignore
                 requestedVehicles: {
                     motorcycle: true,
                 },
@@ -120,6 +135,8 @@ class CallDAO implements ICallRepository{
                 }
             },
             orWhere: {
+                // @ts-ignore
+                active: true,
                 // @ts-ignore
                 requestedVehicles: {
                     motorcycle: true,
@@ -138,6 +155,8 @@ class CallDAO implements ICallRepository{
             relations:['startLocation', 'finishLocation'],
             where: {
                 // @ts-ignore
+                active: true,
+                // @ts-ignore
                 requestedVehicles: {
                     car: true,
                 },
@@ -148,6 +167,8 @@ class CallDAO implements ICallRepository{
                 }
             },
             orWhere: {
+                // @ts-ignore
+                active: true,
                 // @ts-ignore
                 requestedVehicles: {
                     car: true,
@@ -166,6 +187,8 @@ class CallDAO implements ICallRepository{
             relations:['startLocation', 'finishLocation'],
             where: {
                 // @ts-ignore
+                active: true,
+                // @ts-ignore
                 requestedVehicles: {
                     van: true,
                 },
@@ -176,6 +199,8 @@ class CallDAO implements ICallRepository{
                 }
             },
             orWhere: {
+                // @ts-ignore
+                active: true,
                 // @ts-ignore
                 requestedVehicles: {
                     van: true,
