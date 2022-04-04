@@ -5,7 +5,7 @@ interface ICallRepository{
     generateLocationId(): Promise<string>;
     save(call: Call): void;
     getById(id: string): Promise<Call>;
-    getCallsInSquare(lat: number, long: number, km: number): Promise<Call[]>;
+    getCallsInSquare(lat: number, long: number, km: number, vehicleType: string): Promise<Call[]>;
 }
 
 export default ICallRepository;

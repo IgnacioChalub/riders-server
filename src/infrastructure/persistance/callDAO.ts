@@ -4,6 +4,7 @@ import IdGeneratorImplementation from "../services/idGeneratorImplementation";
 import {AppDataSource} from "../db/database";
 import {LessThanOrEqual, MoreThanOrEqual} from "typeorm";
 import {Location} from "../../domain/entities/location";
+import {VehicleTypes} from "../../domain/entities/vehicle";
 
 class CallDAO implements ICallRepository{
 
@@ -53,30 +54,140 @@ class CallDAO implements ICallRepository{
         return id;
     }
 
-    async getCallsInSquare(lat: number, long: number, km: number): Promise<Call[]> {
-        const lat1 = lat + (km*0.09);
-        const long1 = long + (km*0.09);
-        const lat2 = lat - (km*0.09);
-        const long2 = long - (km*0.09);
+    async getCallsInSquare(lat: number, long: number, km: number, vehicleType: string): Promise<Call[]> {
+        const minLat = lat + (km*0.09);
+        const minLong = long + (km*0.09);
+        const maxLat = lat - (km*0.09);
+        const maxLong = long - (km*0.09);
+        let calls: Call[] = [];
+        switch (vehicleType){
+            case VehicleTypes.BICYCLE:
+                calls = await this.getBicycleCalls(minLat, minLong, maxLat, maxLong);
+                break;
+            case VehicleTypes.MOTORCYCLE:
+                calls = await this.getMotorcycleCalls(minLat, minLong, maxLat, maxLong);
+                break;
+            case VehicleTypes.CAR:
+                calls = await this.getCarCalls(minLat, minLong, maxLat, maxLong);
+                break;
+            case VehicleTypes.VAN:
+                calls = await this.getVanCalls(minLat, minLong, maxLat, maxLong);
+                break;
+        }
+        return calls;
+    }
+
+    private async getBicycleCalls(minLat: number, minLong: number, maxLat: number, maxLong: number): Promise<Call[]>{
         return <Call[]><unknown>await this.repository.find({
             relations:['startLocation', 'finishLocation'],
             where: {
                 // @ts-ignore
+                requestedVehicles: {
+                    bicycle: true,
+                },
+                // @ts-ignore
                 startLocation: {
-                    lat: LessThanOrEqual(lat1),
-                    long: LessThanOrEqual(long1)
+                    lat: LessThanOrEqual(minLat),
+                    long: LessThanOrEqual(minLong)
                 }
             },
             orWhere: {
                 // @ts-ignore
+                requestedVehicles: {
+                    bicycle: true,
+                },
+                // @ts-ignore
                 startLocation: {
-                    lat: MoreThanOrEqual(lat2),
-                    long: MoreThanOrEqual(long2)
+                    lat: MoreThanOrEqual(maxLat),
+                    long: MoreThanOrEqual(maxLong)
                 }
             }
-        })
+        });
     }
 
+    private async getMotorcycleCalls(minLat: number, minLong: number, maxLat: number, maxLong: number): Promise<Call[]>{
+        return <Call[]><unknown>await this.repository.find({
+            relations:['startLocation', 'finishLocation'],
+            where: {
+                // @ts-ignore
+                requestedVehicles: {
+                    motorcycle: true,
+                },
+                // @ts-ignore
+                startLocation: {
+                    lat: LessThanOrEqual(minLat),
+                    long: LessThanOrEqual(minLong)
+                }
+            },
+            orWhere: {
+                // @ts-ignore
+                requestedVehicles: {
+                    motorcycle: true,
+                },
+                // @ts-ignore
+                startLocation: {
+                    lat: MoreThanOrEqual(maxLat),
+                    long: MoreThanOrEqual(maxLong)
+                }
+            }
+        });
+    }
+
+    private async getCarCalls(minLat: number, minLong: number, maxLat: number, maxLong: number): Promise<Call[]>{
+        return <Call[]><unknown>await this.repository.find({
+            relations:['startLocation', 'finishLocation'],
+            where: {
+                // @ts-ignore
+                requestedVehicles: {
+                    car: true,
+                },
+                // @ts-ignore
+                startLocation: {
+                    lat: LessThanOrEqual(minLat),
+                    long: LessThanOrEqual(minLong)
+                }
+            },
+            orWhere: {
+                // @ts-ignore
+                requestedVehicles: {
+                    car: true,
+                },
+                // @ts-ignore
+                startLocation: {
+                    lat: MoreThanOrEqual(maxLat),
+                    long: MoreThanOrEqual(maxLong)
+                }
+            }
+        });
+    }
+
+    private async getVanCalls(minLat: number, minLong: number, maxLat: number, maxLong: number): Promise<Call[]>{
+        return <Call[]><unknown>await this.repository.find({
+            relations:['startLocation', 'finishLocation'],
+            where: {
+                // @ts-ignore
+                requestedVehicles: {
+                    van: true,
+                },
+                // @ts-ignore
+                startLocation: {
+                    lat: LessThanOrEqual(minLat),
+                    long: LessThanOrEqual(minLong)
+                }
+            },
+            orWhere: {
+                // @ts-ignore
+                requestedVehicles: {
+                    van: true,
+                },
+                // @ts-ignore
+                startLocation: {
+                    lat: MoreThanOrEqual(maxLat),
+                    long: MoreThanOrEqual(maxLong)
+                }
+            }
+        });
+    }
 
 }
 export default CallDAO;

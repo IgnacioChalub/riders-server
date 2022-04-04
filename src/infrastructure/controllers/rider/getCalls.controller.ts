@@ -2,6 +2,8 @@ import GetCallsAplicationService from "../../../aplication/aplicationServices/ri
 import ICallRepository from "../../../aplication/repositories/call.repository";
 import CallDAO from "../../persistance/callDAO";
 import Call from "../../../domain/entities/call";
+import IRiderRepository from "../../../aplication/repositories/rider.repository";
+import RiderDAO from "../../persistance/riderDAO";
 
 class GetCallsController{
 
@@ -15,7 +17,8 @@ class GetCallsController{
 
     static create(): GetCallsController{
         const callRepository:  ICallRepository = new CallDAO();
-        const getCallsAplicationService: GetCallsAplicationService = new GetCallsAplicationService(callRepository);
+        const riderRepository: IRiderRepository = new RiderDAO();
+        const getCallsAplicationService: GetCallsAplicationService = new GetCallsAplicationService(callRepository, riderRepository);
         return new GetCallsController(getCallsAplicationService);
     }
 
@@ -26,8 +29,8 @@ class GetCallsController{
         return this.getCallsController;
     }
 
-    async run(lat: number, long: number): Promise<Call[]>{
-        return await this.getCallsAplicationService.run(lat, long);
+    async run(id: string, lat: number, long: number): Promise<Call[]>{
+        return await this.getCallsAplicationService.run(id, lat, long);
     }
 }
 

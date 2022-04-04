@@ -5,9 +5,9 @@ import Call from "../../../domain/entities/call";
 
 const getCalls = async (args: any, req: Request): Promise<Call[]> => {
     const token: string = <string>req.headers['auth-token'];
-    tokenValidation(token, "rider");
+    const id: string = tokenValidation(token, "rider");
     const {lat, long} = args.input;
-    return GetCallsController.getController().run(lat, long);
+    return GetCallsController.getController().run(id, lat, long);
 }
 
 export default getCalls;

@@ -48,6 +48,10 @@ class Rider{
     getPassword(): string{
         return this.password;
     }
+
+    getVehicleType(): string {
+        return this.vehicle.getType();
+    }
 }
 
 export default Rider;
