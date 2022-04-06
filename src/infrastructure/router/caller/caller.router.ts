@@ -65,6 +65,8 @@ const schema = buildSchema(`
     stars: Int!
   }
 
+  scalar Date
+
   type Call {
     id: String
     callerRatingStars: Int!
@@ -73,6 +75,7 @@ const schema = buildSchema(`
     description: String!
     startLocation: Location!
     finishLocation:Location!
+    date: Date!
   }
   
   type RequestedVehicles{

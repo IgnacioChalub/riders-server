@@ -33,9 +33,12 @@ class Call{
     private readonly finishLocation: Location;
 
     @Column()
+    private date: Date;
+
+    @Column()
     private active: boolean;
 
-    constructor(id: string, callerId: string, callerRatingStars: number, requestedVehicles: RequestedVehicles, priceInCents: number, description: string, startLocation: Location, finishLocation: Location, active: boolean) {
+    constructor(id: string, callerId: string, callerRatingStars: number, requestedVehicles: RequestedVehicles, priceInCents: number, description: string, startLocation: Location, finishLocation: Location, date: Date, active: boolean) {
         this.id = id;
         this.callerId = callerId;
         this.callerRatingStars = callerRatingStars;
@@ -44,6 +47,7 @@ class Call{
         this.description = description;
         this.startLocation = startLocation;
         this.finishLocation = finishLocation;
+        this.date = date;
         this.active = active;
     }
 

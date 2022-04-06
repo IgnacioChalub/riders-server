@@ -21,15 +21,15 @@ class Ride{
     private active: boolean;
 
     @Column()
-    private startDate: Date;
+    private date: Date;
 
-    constructor(id: string, riderId: string, call: Call, riderArrivedStartLocation: boolean, active: boolean, startDate: Date) {
+    constructor(id: string, riderId: string, call: Call, riderArrivedStartLocation: boolean, active: boolean, date: Date) {
         this.id = id
         this.riderId = riderId;
         this.call = call;
         this.riderArrivedStartLocation = riderArrivedStartLocation;
         this.active = active;
-        this.startDate = startDate;
+        this.date = date;
     }
 
 

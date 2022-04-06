@@ -61,6 +61,7 @@ const schema = buildSchema(`
     description: String!
     startLocation: Location!
     finishLocation:Location!
+    date: Date!
   }
   
   scalar Date
@@ -69,7 +70,7 @@ const schema = buildSchema(`
     id: String!
     call: Call!
     riderArrivedStartLocation: Boolean!
-    startDate: Date!
+    date: Date!
   }
   
   type RequestedVehicles{
