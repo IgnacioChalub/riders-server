@@ -3,7 +3,6 @@ import GetActiveCallsAplicationService
 import ICallRepository from "../../../aplication/repositories/call.repository";
 import CallDAO from "../../persistance/callDAO";
 import Call from "../../../domain/entities/call";
-import CallerDAO from "../../persistance/callerDAO";
 
 class GetActiveCallsController{
 

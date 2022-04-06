@@ -4,6 +4,7 @@ import Rider from "../../domain/entities/rider";
 import Call from "../../domain/entities/call";
 import 'dotenv/config'
 import {Location} from "../../domain/entities/location";
+import {Ride} from "../../domain/entities/ride";
 
 const port: number = <number><unknown>process.env.DB_PORT;
 const AppDataSource: DataSource = new DataSource({
@@ -17,7 +18,8 @@ const AppDataSource: DataSource = new DataSource({
         Caller,
         Rider,
         Call,
-        Location
+        Location,
+        Ride
     ],
     synchronize: true,
 })

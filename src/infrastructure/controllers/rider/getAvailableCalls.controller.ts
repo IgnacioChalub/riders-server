@@ -1,10 +1,10 @@
-import GetCallsAplicationService from "../../../aplication/aplicationServices/rider/getAvailableCalls.aplicationService";
+import GetAvailableCallsAplicationService
+    from "../../../aplication/aplicationServices/rider/getAvailableCalls.aplicationService";
 import ICallRepository from "../../../aplication/repositories/call.repository";
 import CallDAO from "../../persistance/callDAO";
 import Call from "../../../domain/entities/call";
 import IRiderRepository from "../../../aplication/repositories/rider.repository";
 import RiderDAO from "../../persistance/riderDAO";
-import GetAvailableCallsAplicationService from "../../../aplication/aplicationServices/rider/getAvailableCalls.aplicationService";
 
 class GetAvailableCallsController {
 

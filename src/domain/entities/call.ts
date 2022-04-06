@@ -15,7 +15,6 @@ class Call{
     @Column()
     private callerRatingStars: number;
 
-
     @Column(() => RequestedVehicles)
     private requestedVehicles: RequestedVehicles;
 
@@ -48,6 +47,10 @@ class Call{
         this.active = active;
     }
 
+    getId(): string{
+        return this.id;
+    }
+
     isInRadius(riderLat: number, riderLong: number, km: number): boolean{
         return this.startLocation.isInRadius(riderLat, riderLong, km);
     }
@@ -58,6 +61,10 @@ class Call{
 
     getFinishLocation(): Location{
         return this.finishLocation;
+    }
+
+    getAccepted(): void{
+        this.active = false;
     }
 }
 

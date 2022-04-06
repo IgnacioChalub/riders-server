@@ -3,8 +3,8 @@ import {buildSchema} from "graphql";
 import registerRider from "./registerRider.route";
 import logInRider from "./logInRider.route";
 import getRider from "./getRider.route";
-import getCalls from "./getAvailableCalls.route";
 import getAvailableCalls from "./getAvailableCalls.route";
+import acceptCall from "./acceptCall.route";
 
 const router = express.Router();
 
@@ -15,7 +15,8 @@ const root = {
     registerRider,
     logInRider,
     getRider,
-    getAvailableCalls
+    getAvailableCalls,
+    acceptCall
 };
 
 const schema = buildSchema(`
@@ -38,6 +39,10 @@ const schema = buildSchema(`
     long: Float!
   }
   
+  input AcceptCallInput {
+    callId: String!
+  }
+  
   type Rider {
     id: String!
     name: String!
@@ -56,6 +61,15 @@ const schema = buildSchema(`
     description: String!
     startLocation: Location!
     finishLocation:Location!
+  }
+  
+  scalar Date
+  
+  type Ride{
+    id: String!
+    call: Call!
+    riderArrivedStartLocation: Boolean!
+    startDate: Date!
   }
   
   type RequestedVehicles{
@@ -95,6 +109,7 @@ const schema = buildSchema(`
   type Mutation {
     registerRider(input: RegisterRiderInput): Rider
     logInRider(input: LogInRiderInput): Token
+    acceptCall(input: AcceptCallInput): Ride
   }
 `);
 

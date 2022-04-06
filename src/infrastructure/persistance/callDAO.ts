@@ -1,11 +1,11 @@
 import ICallRepository from "../../aplication/repositories/call.repository";
 import Call from "../../domain/entities/call";
+import call from "../../domain/entities/call";
 import IdGeneratorImplementation from "../services/idGeneratorImplementation";
 import {AppDataSource} from "../db/database";
 import {LessThanOrEqual, MoreThanOrEqual} from "typeorm";
 import {Location} from "../../domain/entities/location";
 import {VehicleTypes} from "../../domain/entities/vehicle";
-import call from "../../domain/entities/call";
 
 class CallDAO implements ICallRepository{
 
@@ -25,8 +25,16 @@ class CallDAO implements ICallRepository{
         this.repository.save(call).then()
     }
 
+    async update(call: Call): Promise<void> {
+        await this.repository.update(call.getId(),{
+            // @ts-ignore
+            active: false
+        })
+    }
+
     async getById(id: string): Promise<Call> {
         return <Call>await this.repository.findOne({
+                relations: ['startLocation', 'finishLocation'],
                 where: {
                     // @ts-ignore
                     id: id,
