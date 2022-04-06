@@ -5,9 +5,9 @@ import {Ride} from "../../../domain/entities/ride";
 
 const acceptCall = async (args: any, req: Request): Promise<Ride> => {
     const token: string = <string>req.headers['auth-token'];
-    tokenValidation(token, "rider");
+    const id: string = tokenValidation(token, "rider");
     const {callId} = args.input;
-    return AcceptCallController.getController().run(callId);
+    return AcceptCallController.getController().run(callId, id);
 }
 
 export default acceptCall;

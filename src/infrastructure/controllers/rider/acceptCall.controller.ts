@@ -27,8 +27,8 @@ class AcceptCallController{
         return this.acceptCallController;
     }
 
-    async run(callId: string): Promise<Ride>{
-        return this.acceptCallAplicationService.run(callId);
+    async run(callId: string, riderId: string): Promise<Ride>{
+        return this.acceptCallAplicationService.run(callId, riderId);
     }
 }
 

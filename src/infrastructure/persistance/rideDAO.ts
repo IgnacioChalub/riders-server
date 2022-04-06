@@ -38,6 +38,17 @@ class RideDAO implements IRideRepository{
         return id;
     }
 
+    async getRiderActiveRide(riderId: string): Promise<Ride> {
+        return <Ride>await this.repository.findOne({
+            where: {
+                // @ts-ignore
+                riderId: riderId,
+                // @ts-ignore
+                active: true
+            },
+        })
+    }
+
 }
 
 export default RideDAO;
