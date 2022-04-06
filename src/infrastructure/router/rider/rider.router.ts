@@ -89,12 +89,12 @@ const schema = buildSchema(`
 
   type Query {
     getRider: Rider
+    getAvailableCalls(input: GetAvailableCallsInput): [Call]!
   }
   
   type Mutation {
     registerRider(input: RegisterRiderInput): Rider
     logInRider(input: LogInRiderInput): Token
-    getCalls(input: GetAvailableCallsInput): [Call]!
   }
 `);
 
