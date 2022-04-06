@@ -5,7 +5,7 @@ import Rider from "../../../domain/entities/rider";
 
 class GetRiderController{
 
-    private static getRiderController: GetRiderController;
+    private static getRiderController: GetRiderController = GetRiderController.create();
 
     private getRiderAplicationService: GetRiderAplicationService;
 
@@ -14,15 +14,12 @@ class GetRiderController{
     }
 
     static create(): GetRiderController{
-        const riderRepository:  IRiderRepository = new RiderDAO();
+        const riderRepository:  IRiderRepository = RiderDAO.getInstance();
         const getRiderAplicationService: GetRiderAplicationService = new GetRiderAplicationService(riderRepository);
         return new GetRiderController(getRiderAplicationService);
     }
 
     static getController(): GetRiderController{
-        if(!this.getRiderController){
-            this.getRiderController = GetRiderController.create();
-        }
         return this.getRiderController;
     }
 

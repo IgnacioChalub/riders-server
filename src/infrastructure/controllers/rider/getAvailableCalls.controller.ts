@@ -8,7 +8,7 @@ import GetAvailableCallsAplicationService from "../../../aplication/aplicationSe
 
 class GetAvailableCallsController {
 
-    private static getAvailableCallsController: GetAvailableCallsController;
+    private static getAvailableCallsController: GetAvailableCallsController = GetAvailableCallsController.create();
 
     private getAvailableCallsAplicationService: GetAvailableCallsAplicationService;
 
@@ -17,16 +17,13 @@ class GetAvailableCallsController {
     }
 
     static create(): GetAvailableCallsController{
-        const callRepository:  ICallRepository = new CallDAO();
-        const riderRepository: IRiderRepository = new RiderDAO();
+        const callRepository:  ICallRepository = CallDAO.getInstance();
+        const riderRepository: IRiderRepository = RiderDAO.getInstance();
         const getAvailableCallsAplicationService: GetAvailableCallsAplicationService = new GetAvailableCallsAplicationService(callRepository, riderRepository);
         return new GetAvailableCallsController(getAvailableCallsAplicationService);
     }
 
     static getController(): GetAvailableCallsController{
-        if(!this.getAvailableCallsController){
-            this.getAvailableCallsController = GetAvailableCallsController.create();
-        }
         return this.getAvailableCallsController;
     }
 

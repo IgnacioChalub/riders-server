@@ -9,7 +9,7 @@ import CreateRiderDomainService from "../../../domain/services/rider/createRider
 
 class RegisterRiderController{
 
-    private static registerRiderController: RegisterRiderController;
+    private static registerRiderController: RegisterRiderController = RegisterRiderController.create();
 
     private registerRiderAplicationService: RegisterRiderAplicationService;
 
@@ -19,16 +19,13 @@ class RegisterRiderController{
 
     static create(): RegisterRiderController{
         const passwordHasher: IPasswordHasher = new PasswordHasherImplementation();
-        const riderRepository: IRiderRepository = new RiderDAO();
+        const riderRepository: IRiderRepository = RiderDAO.getInstance();
         const createRiderDomainService: CreateRiderDomainService = new CreateRiderDomainService(passwordHasher);
         const registerRiderAplicationService: RegisterRiderAplicationService = new RegisterRiderAplicationService(riderRepository, createRiderDomainService);
         return new RegisterRiderController(registerRiderAplicationService);
     }
 
     static getController(): RegisterRiderController{
-        if(!this.registerRiderController){
-            this.registerRiderController = RegisterRiderController.create();
-        }
         return this.registerRiderController;
     }
 

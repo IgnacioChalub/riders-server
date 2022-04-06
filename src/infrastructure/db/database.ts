@@ -20,12 +20,6 @@ const AppDataSource: DataSource = new DataSource({
         Location
     ],
     synchronize: true,
-    migrations: [
-        "src/infrastructure/db/migrations/*.ts"
-    ],
-    cli: {
-        migrationsDir: "src/infrastructure/db/migrations"
-    }
 })
 
 const runDbConnection = async (): Promise<void> => {

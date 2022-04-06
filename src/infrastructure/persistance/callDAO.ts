@@ -9,9 +9,15 @@ import call from "../../domain/entities/call";
 
 class CallDAO implements ICallRepository{
 
+    private static instance: ICallRepository = new CallDAO();
+
     private repository = AppDataSource.getRepository(Call);
     private locationRepository = AppDataSource.getRepository(Location);
     private tableName = "call";
+
+    static getInstance(): ICallRepository{
+        return this.instance;
+    }
 
     async save(call: Call): Promise<void> {
         await this.locationRepository.save(call.getStartLocation()).then();

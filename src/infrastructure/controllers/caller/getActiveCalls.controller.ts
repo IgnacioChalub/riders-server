@@ -3,10 +3,11 @@ import GetActiveCallsAplicationService
 import ICallRepository from "../../../aplication/repositories/call.repository";
 import CallDAO from "../../persistance/callDAO";
 import Call from "../../../domain/entities/call";
+import CallerDAO from "../../persistance/callerDAO";
 
 class GetActiveCallsController{
 
-    private static getActiveCallsController: GetActiveCallsController;
+    private static getActiveCallsController: GetActiveCallsController = GetActiveCallsController.create();
 
     private getActiveCallsAplicationService: GetActiveCallsAplicationService;
 
@@ -15,15 +16,12 @@ class GetActiveCallsController{
     }
 
     static create(): GetActiveCallsController{
-        const callRepository: ICallRepository = new CallDAO();
+        const callRepository: ICallRepository = CallDAO.getInstance();
         const getActiveCallsAplicationService = new GetActiveCallsAplicationService(callRepository);
         return new GetActiveCallsController(getActiveCallsAplicationService);
     }
 
     static getController(): GetActiveCallsController{
-        if(!this.getActiveCallsController){
-            this.getActiveCallsController = GetActiveCallsController.create();
-        }
         return this.getActiveCallsController;
     }
 

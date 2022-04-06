@@ -5,7 +5,7 @@ import CallerDAO from "../../persistance/callerDAO";
 
 class GetCallerController{
 
-    private static getCallerController: GetCallerController;
+    private static getCallerController: GetCallerController = GetCallerController.create();
 
     private getCallerAplicationService: GetCallerAplicationService;
 
@@ -14,15 +14,12 @@ class GetCallerController{
     }
 
     static create(): GetCallerController{
-        const callerRepository:  ICallerRepository = new CallerDAO();
+        const callerRepository:  ICallerRepository = CallerDAO.getInstance();
         const getCallerAplicationService: GetCallerAplicationService = new GetCallerAplicationService(callerRepository);
         return new GetCallerController(getCallerAplicationService);
     }
 
     static getController(): GetCallerController{
-        if(!this.getCallerController){
-            this.getCallerController = GetCallerController.create();
-        }
         return this.getCallerController;
     }
 

@@ -8,7 +8,7 @@ import JWTLogger from "../../services/logger";
 
 class LogInRiderController{
 
-    private static logInRiderController: LogInRiderController;
+    private static logInRiderController: LogInRiderController = LogInRiderController.create();
 
     private logInRiderAplicationService: LogInRiderAplicationService;
 
@@ -17,7 +17,7 @@ class LogInRiderController{
     }
 
     static create(): LogInRiderController{
-        const riderRepository: IRiderRepository = new RiderDAO();
+        const riderRepository: IRiderRepository = RiderDAO.getInstance();
         const passwordHasher: IPasswordHasher = new PasswordHasherImplementation();
         const logger: ILogger = new JWTLogger();
         const logInRiderAplicationService: LogInRiderAplicationService = new LogInRiderAplicationService(logger, passwordHasher, riderRepository);
@@ -25,9 +25,6 @@ class LogInRiderController{
     }
 
     static getController(): LogInRiderController{
-        if(!this.logInRiderController){
-            this.logInRiderController = LogInRiderController.create();
-        }
         return this.logInRiderController;
     }
 

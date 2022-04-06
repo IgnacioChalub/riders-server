@@ -8,7 +8,7 @@ import JWTLogger from "../../services/logger";
 
 class LogInCallerController{
 
-    private static logInCallerController: LogInCallerController;
+    private static logInCallerController: LogInCallerController = LogInCallerController.create();
 
     private logInCallerAplicationService: LogInCallerAplicationService;
 
@@ -17,7 +17,7 @@ class LogInCallerController{
     }
 
     static create(): LogInCallerController{
-        const callerRepository: ICallerRepository = new CallerDAO();
+        const callerRepository: ICallerRepository = CallerDAO.getInstance();
         const passwordHasher: IPasswordHasher = new PasswordHasherImplementation();
         const logger: ILogger = new JWTLogger();
         const logInCallerAplicationService: LogInCallerAplicationService = new LogInCallerAplicationService(logger, passwordHasher, callerRepository);
@@ -25,9 +25,6 @@ class LogInCallerController{
     }
 
     static getController(): LogInCallerController{
-        if(!this.logInCallerController){
-            this.logInCallerController = LogInCallerController.create();
-        }
         return this.logInCallerController;
     }
 

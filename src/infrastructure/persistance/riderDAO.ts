@@ -5,8 +5,14 @@ import {AppDataSource} from "../db/database";
 
 class RiderDAO implements IRiderRepository{
 
+    private static instance: IRiderRepository = new RiderDAO();
+
     private repository = AppDataSource.getRepository(Rider);
     private tableName = "rider";
+
+    static getInstance(): IRiderRepository{
+        return this.instance;
+    }
 
     save(rider: Rider): void {
         this.repository.save(rider).then(r => r);

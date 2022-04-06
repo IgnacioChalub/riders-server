@@ -8,7 +8,7 @@ import Call from "../../../domain/entities/call";
 
 class CreateCallController{
 
-    private static createCallController: CreateCallController;
+    private static createCallController: CreateCallController = CreateCallController.create();
 
     private createCallAplicationService: CreateCallAplicationService;
 
@@ -17,17 +17,14 @@ class CreateCallController{
     }
 
     static create(): CreateCallController{
-        const callRepository: ICallRepository = new CallDAO();
-        const callerRepository: ICallerRepository = new CallerDAO();
+        const callRepository: ICallRepository = CallDAO.getInstance();
+        const callerRepository: ICallerRepository = CallerDAO.getInstance();
         const createCalDomainService: CreateCallDomainService = new CreateCallDomainService();
         const createCallAplicationService: CreateCallAplicationService = new CreateCallAplicationService(callRepository, callerRepository, createCalDomainService)
         return new CreateCallController(createCallAplicationService);
     }
 
     static getController(): CreateCallController{
-        if(!this.createCallController){
-            this.createCallController = CreateCallController.create();
-        }
         return this.createCallController;
     }
 

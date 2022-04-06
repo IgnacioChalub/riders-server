@@ -9,7 +9,7 @@ import {Caller} from "../../../domain/entities/caller";
 
 class RegisterCallerController{
 
-    private static registerCallerController: RegisterCallerController;
+    private static registerCallerController: RegisterCallerController = RegisterCallerController.create();
 
     private registerCallerAplicationService: RegisterCallerAplicationService;
 
@@ -18,7 +18,7 @@ class RegisterCallerController{
     }
 
     static create(): RegisterCallerController{
-        const callerRepository: ICallerRepository = new CallerDAO();
+        const callerRepository: ICallerRepository = CallerDAO.getInstance();
         const passwordHasher: IPasswordHasher = new PasswordHasherImplementation();
 
         const createCallerDomainService: CreateCallerDomainService = new CreateCallerDomainService(passwordHasher);
@@ -27,9 +27,6 @@ class RegisterCallerController{
     }
 
     static getController(): RegisterCallerController{
-        if(!this.registerCallerController){
-            this.registerCallerController = RegisterCallerController.create();
-        }
         return this.registerCallerController;
     }
 

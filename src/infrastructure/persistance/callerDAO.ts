@@ -5,11 +5,17 @@ import {AppDataSource} from "../db/database";
 
 class CallerDAO implements ICallerRepository{
 
+    private static instance: ICallerRepository = new CallerDAO();
+
     private repository = AppDataSource.getRepository(Caller);
     private tableName = "caller";
 
     save(caller: Caller): void {
         this.repository.save(caller).then(r => r);
+    }
+
+    static getInstance(): ICallerRepository{
+        return this.instance;
     }
 
     async getByDNIorEmail(DNI: number, emailAddress: string): Promise<Caller> {
