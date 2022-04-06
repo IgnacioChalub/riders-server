@@ -25,7 +25,7 @@ class CallDAO implements ICallRepository{
         this.repository.save(call).then()
     }
 
-    async update(call: Call): Promise<void> {
+    async setInactive(call: Call): Promise<void> {
         await this.repository.update(call.getId(),{
             // @ts-ignore
             active: false
@@ -109,6 +109,8 @@ class CallDAO implements ICallRepository{
             relations:['startLocation', 'finishLocation'],
             where: {
                 // @ts-ignore
+                active: true,
+                // @ts-ignore
                 requestedVehicles: {
                     bicycle: true,
                 },
@@ -119,6 +121,8 @@ class CallDAO implements ICallRepository{
                 }
             },
             orWhere: {
+                // @ts-ignore
+                active: true,
                 // @ts-ignore
                 requestedVehicles: {
                     bicycle: true,

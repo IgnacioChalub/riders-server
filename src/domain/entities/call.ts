@@ -63,7 +63,11 @@ class Call{
         return this.finishLocation;
     }
 
-    getAccepted(): void{
+    isActive(): boolean{
+        return this.active;
+    }
+
+    accept(): void{
         this.active = false;
     }
 }

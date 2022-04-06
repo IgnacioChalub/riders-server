@@ -17,12 +17,11 @@ class AcceptCallAplicationService{
         const ride: Ride = await this.rideRepository.getRiderActiveRide(riderId);
         if(ride) throw Error("Rider already in a ride");
         const call: Call = await this.callRepository.getById(callId);
-        console.log(call)
         if(!call) throw Error("Call not found");
-        call.getAccepted();
+        call.accept();
         const rideId: string = await this.rideRepository.generateId();
         const newRide: Ride = new Ride(rideId, riderId,call,false, true, new Date());
-        await this.callRepository.update(call);
+        await this.callRepository.setInactive(call);
         await this.rideRepository.save(newRide);
         return newRide;
     }
