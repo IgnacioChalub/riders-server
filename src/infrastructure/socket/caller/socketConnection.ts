@@ -93,15 +93,7 @@ class SocketConnection{
     }
 
     private parseToJson(message: any) {
-        if (typeof message != 'string'){
-            try{
-                message = JSON.stringify(message);
-                return JSON.parse(message);
-            }catch(e: any){
-                throw Error();
-            }
-        }
-        
+        if (typeof message != 'string') return message;
         try {
             return JSON.parse(message);
         } catch (e) {
