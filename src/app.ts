@@ -4,6 +4,8 @@ import "reflect-metadata";
 import 'dotenv/config'
 import {callerRouter} from "./infrastructure/router/caller/caller.router";
 import {riderRouter} from "./infrastructure/router/rider/rider.router";
+import {Server as WebSocketServer, Socket} from 'socket.io';
+import http from "http";
 
 const app: Application = express();
 const PORT = 5000;
@@ -19,3 +21,5 @@ app.use(callerRouter);
 app.use(riderRouter);
 
 export default app;
+
+

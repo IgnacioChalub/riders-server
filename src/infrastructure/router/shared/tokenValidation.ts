@@ -8,8 +8,17 @@ interface Payload{
 }
 
 export const tokenValidation = (token: string, accountTypeToValidate: string) => {
-    if(!token) throw Error("Access denied");
     try{
+        if(!token) throw Error();
+        const payload = jwt.verify(token, 'secretiveness') as Payload;
+        const id = payload._id;
+        const accountType = payload._accountType;
+        if(accountType !== accountTypeToValidate) throw Error()
+        return id;
+    }catch(e: any){
+        throw Error("Acces denied");
+    }
+    /*try{
         const payload = jwt.verify(token, 'secretiveness') as Payload;
         const id = payload._id;
         const accountType = payload._accountType;
@@ -17,5 +26,5 @@ export const tokenValidation = (token: string, accountTypeToValidate: string) =>
         return id;
     }catch (e) {
         throw Error('Invalid Token');
-    }
+    }*/
 }

@@ -7,7 +7,7 @@ const acceptCall = async (args: any, req: Request): Promise<Ride> => {
     const token: string = <string>req.headers['auth-token'];
     const id: string = tokenValidation(token, "rider");
     const {callId} = args.input;
-    return AcceptCallController.getController().run(callId, id);
+    return await AcceptCallController.getController().run(callId, id);
 }
 
 export default acceptCall;

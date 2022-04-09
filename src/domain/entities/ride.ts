@@ -32,7 +32,9 @@ class Ride{
         this.date = date;
     }
 
-
+    getCallerId(): string{
+        return this.call.getCallerId();
+    }
 }
 
 export {Ride};

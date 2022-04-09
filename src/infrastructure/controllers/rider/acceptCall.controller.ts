@@ -4,6 +4,7 @@ import ICallRepository from "../../../aplication/repositories/call.repository";
 import CallDAO from "../../persistance/callDAO";
 import RideDAO from "../../persistance/rideDAO";
 import {Ride} from "../../../domain/entities/ride";
+import { SocketConnection } from "../../socket/caller/socketConnection";
 
 class AcceptCallController{
 
@@ -28,7 +29,9 @@ class AcceptCallController{
     }
 
     async run(callId: string, riderId: string): Promise<Ride>{
-        return this.acceptCallAplicationService.run(callId, riderId);
+        const ride: Ride = await this.acceptCallAplicationService.run(callId, riderId);
+        SocketConnection.getInstance().sendRide(ride);
+        return ride;
     }
 }
 

@@ -7,7 +7,7 @@ import RequestedVehicles from "./requestedVehicles";
 class Call{
 
     @PrimaryColumn()
-    private id: string;
+    private readonly id: string;
 
     @Column()
     private callerId: string;
@@ -53,6 +53,10 @@ class Call{
 
     getId(): string{
         return this.id;
+    }
+
+    getCallerId(): string{
+        return this.callerId;
     }
 
     isInRadius(riderLat: number, riderLong: number, km: number): boolean{
