@@ -5,6 +5,7 @@ import logInRider from "./logInRider.route";
 import getRider from "./getRider.route";
 import getAvailableCalls from "./getAvailableCalls.route";
 import acceptCall from "./acceptCall.route";
+import getActiveRide from "./getActiveRide.route"
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ const root = {
     registerRider,
     logInRider,
     getRider,
+    getActiveRide,
     getAvailableCalls,
     acceptCall
 };
@@ -42,7 +44,6 @@ const schema = buildSchema(`
   input AcceptCallInput {
     callId: String!
   }
-  
   type Rider {
     id: String!
     name: String!
@@ -105,6 +106,7 @@ const schema = buildSchema(`
   type Query {
     getRider: Rider
     getAvailableCalls(input: GetAvailableCallsInput): [Call]!
+    getActiveRide: Ride
   }
   
   type Mutation {

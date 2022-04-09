@@ -18,13 +18,4 @@ export const tokenValidation = (token: string, accountTypeToValidate: string) =>
     }catch(e: any){
         throw Error("Acces denied");
     }
-    /*try{
-        const payload = jwt.verify(token, 'secretiveness') as Payload;
-        const id = payload._id;
-        const accountType = payload._accountType;
-        if(accountType !== accountTypeToValidate) throw Error('Access denied')
-        return id;
-    }catch (e) {
-        throw Error('Invalid Token');
-    }*/
 }

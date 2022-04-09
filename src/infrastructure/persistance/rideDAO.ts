@@ -20,6 +20,7 @@ class RideDAO implements IRideRepository{
 
     async getById(id: string): Promise<Ride> {
         return <Ride>await this.repository.findOne({
+            relations: ["call", "call.startLocation","call.finishLocation"],
             where: {
                 // @ts-ignore
                 id: id
@@ -40,6 +41,7 @@ class RideDAO implements IRideRepository{
 
     async getRiderActiveRide(riderId: string): Promise<Ride> {
         return <Ride>await this.repository.findOne({
+            relations: ["call", "call.startLocation","call.finishLocation"],
             where: {
                 // @ts-ignore
                 riderId: riderId,
