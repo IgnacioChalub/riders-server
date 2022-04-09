@@ -48,6 +48,12 @@ class SocketConnection{
 
     private createCallListener(socket: Socket): void {
         socket.on('create-call', async (message: any) => {
+            try{
+                message = this.parseToJson(message);
+            }catch(e){
+                socket.emit('create-call', {error: "invalid message"});
+                return;
+            }
             if(!await validate(callSchema, message)){
                 socket.emit('create-call', {error: "invalid message"});
                 return;
@@ -84,6 +90,23 @@ class SocketConnection{
             const call: Call = await CreateCallController.getController().run(id, vehicleTypes, priceInCents, description, bicycle, motorcycle, car, van, startAddress, finishAddress, startLat, startLong, finishLat, finishLong);
             socket.emit('create-call', call);
         });
+    }
+
+    private parseToJson(message: any) {
+        if (typeof message != 'string'){
+            try{
+                message = JSON.stringify(message);
+                return JSON.parse(message);
+            }catch(e: any){
+                throw Error();
+            }
+        }
+        
+        try {
+            return JSON.parse(message);
+        } catch (e) {
+            throw Error();
+        }
     }
 
     sendRide(ride: Ride): void{
