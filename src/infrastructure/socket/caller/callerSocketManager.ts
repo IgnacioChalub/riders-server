@@ -5,10 +5,11 @@ import CreateCallController from "../../controllers/caller/createCall.controller
 import validate from "../schemaValidator";
 import callSchema from "./schemas/callSchema";
 import {Ride} from "../../../domain/entities/ride";
+import IAcceptCallListener from "../../controllers/rider/observable/listeners/acceptCall.listener";
 
-class SocketConnection{
+class CallerSocketManager implements IAcceptCallListener{
 
-    static instance: SocketConnection;
+    static instance: CallerSocketManager;
 
     io: WebSocketServer;
     socketIds = new Map<any, string>();
@@ -18,12 +19,12 @@ class SocketConnection{
     }
 
     static create(io: WebSocketServer): void{
-        const instance: SocketConnection = new SocketConnection(io);
+        const instance: CallerSocketManager = new CallerSocketManager(io);
         this.instance = instance;
         this.instance.createConnectionAndListeners(); 
     }
 
-    static getInstance(): SocketConnection{
+    static getInstance(): CallerSocketManager{
         return this.instance;
     }
 
@@ -101,12 +102,16 @@ class SocketConnection{
         }
     }
 
-    sendRide(ride: Ride): void{
+    newRide(ride: Ride): void {
         const socketId: string|undefined = this.socketIds.get(ride.getCallerId());
         if(!socketId) return;
         this.io.to(socketId).emit('ride', ride);
     }
 
+    test(): void {
+        console.log("test")
+    }
+
 }
 
-export {SocketConnection};
+export {CallerSocketManager};

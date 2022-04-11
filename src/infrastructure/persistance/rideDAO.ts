@@ -15,7 +15,7 @@ class RideDAO implements IRideRepository{
     }
 
     save(ride: Ride): void {
-        this.repository.save(ride).then(r => r);
+        //this.repository.save(ride).then(r => r);
     }
 
     async getById(id: string): Promise<Ride> {
