@@ -9,7 +9,7 @@ import CreateRiderDomainService from "../../../domain/services/rider/createRider
 
 class RegisterRiderController{
 
-    private static registerRiderController: RegisterRiderController = RegisterRiderController.create();
+    private static registerRiderController: RegisterRiderController;
 
     private registerRiderAplicationService: RegisterRiderAplicationService;
 
@@ -26,6 +26,7 @@ class RegisterRiderController{
     }
 
     static getController(): RegisterRiderController{
+        if(!this.registerRiderController) this.registerRiderController = RegisterRiderController.create();
         return this.registerRiderController;
     }
 

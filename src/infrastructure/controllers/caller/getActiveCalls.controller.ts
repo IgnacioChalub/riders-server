@@ -6,7 +6,7 @@ import Call from "../../../domain/entities/call";
 
 class GetActiveCallsController{
 
-    private static getActiveCallsController: GetActiveCallsController = GetActiveCallsController.create();
+    private static getActiveCallsController: GetActiveCallsController;
 
     private getActiveCallsAplicationService: GetActiveCallsAplicationService;
 
@@ -21,6 +21,7 @@ class GetActiveCallsController{
     }
 
     static getController(): GetActiveCallsController{
+        if(!this.getActiveCallsController) this.getActiveCallsController = GetActiveCallsController.create();
         return this.getActiveCallsController;
     }
 

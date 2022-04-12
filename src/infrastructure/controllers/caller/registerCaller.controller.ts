@@ -4,12 +4,12 @@ import CallerDAO from "../../persistance/callerDAO";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
 import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
 import RegisterCallerAplicationService
-    from "../../../aplication/aplicationServices/caller/registerCaller.aplicationService";
+from "../../../aplication/aplicationServices/caller/registerCaller.aplicationService";
 import {Caller} from "../../../domain/entities/caller";
 
 class RegisterCallerController{
 
-    private static registerCallerController: RegisterCallerController = RegisterCallerController.create();
+    private static registerCallerController: RegisterCallerController;
 
     private registerCallerAplicationService: RegisterCallerAplicationService;
 
@@ -27,6 +27,7 @@ class RegisterCallerController{
     }
 
     static getController(): RegisterCallerController{
+        if(!this.registerCallerController) this.registerCallerController = RegisterCallerController.create();
         return this.registerCallerController;
     }
 

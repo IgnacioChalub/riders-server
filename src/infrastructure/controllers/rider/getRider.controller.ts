@@ -5,7 +5,7 @@ import Rider from "../../../domain/entities/rider";
 
 class GetRiderController{
 
-    private static getRiderController: GetRiderController = GetRiderController.create();
+    private static getRiderController: GetRiderController;
 
     private getRiderAplicationService: GetRiderAplicationService;
 
@@ -20,6 +20,7 @@ class GetRiderController{
     }
 
     static getController(): GetRiderController{
+        if(!this.getRiderController) this.getRiderController = GetRiderController.create();
         return this.getRiderController;
     }
 

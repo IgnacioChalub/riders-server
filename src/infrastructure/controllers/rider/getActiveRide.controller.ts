@@ -8,7 +8,7 @@ from "../../../aplication/aplicationServices/rider/getActiveRide.aplicationServi
 
 class GetActiveRideController{
 
-    private static getActiveRideController: GetActiveRideController = GetActiveRideController.create();
+    private static getActiveRideController: GetActiveRideController;
 
     private getActiveRideAplicationService: GetActiveRideAplicationService;
 
@@ -25,6 +25,7 @@ class GetActiveRideController{
     }
 
     static getController(): GetActiveRideController{
+        if(!this.getActiveRideController) this.getActiveRideController = GetActiveRideController.create();
         return this.getActiveRideController;
     }
 

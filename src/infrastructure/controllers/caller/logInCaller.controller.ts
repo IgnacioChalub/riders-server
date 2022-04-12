@@ -8,7 +8,7 @@ import JWTLogger from "../../services/logger";
 
 class LogInCallerController{
 
-    private static logInCallerController: LogInCallerController = LogInCallerController.create();
+    private static logInCallerController: LogInCallerController;
 
     private logInCallerAplicationService: LogInCallerAplicationService;
 
@@ -25,6 +25,7 @@ class LogInCallerController{
     }
 
     static getController(): LogInCallerController{
+        if(!this.logInCallerController) this.logInCallerController = LogInCallerController.create();
         return this.logInCallerController;
     }
 

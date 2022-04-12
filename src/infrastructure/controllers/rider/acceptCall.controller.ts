@@ -30,9 +30,7 @@ class AcceptCallController extends AcceptCallObservableController{
     }
 
     static getController(): AcceptCallController{
-        if(!this.acceptCallController){
-            this.acceptCallController = this.create();
-        }
+        if(!this.acceptCallController) this.acceptCallController = AcceptCallController.create();
         return this.acceptCallController;
     }
 

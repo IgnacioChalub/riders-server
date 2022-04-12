@@ -8,7 +8,7 @@ import Call from "../../../domain/entities/call";
 
 class CreateCallController{
 
-    private static createCallController: CreateCallController = CreateCallController.create();
+    private static createCallController: CreateCallController;
 
     private createCallAplicationService: CreateCallAplicationService;
 
@@ -25,6 +25,7 @@ class CreateCallController{
     }
 
     static getController(): CreateCallController{
+        if(!this.createCallController) this.createCallController = CreateCallController.create();
         return this.createCallController;
     }
 

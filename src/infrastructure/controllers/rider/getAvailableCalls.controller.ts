@@ -8,7 +8,7 @@ import RiderDAO from "../../persistance/riderDAO";
 
 class GetAvailableCallsController {
 
-    private static getAvailableCallsController: GetAvailableCallsController = GetAvailableCallsController.create();
+    private static getAvailableCallsController: GetAvailableCallsController;
 
     private getAvailableCallsAplicationService: GetAvailableCallsAplicationService;
 
@@ -24,6 +24,7 @@ class GetAvailableCallsController {
     }
 
     static getController(): GetAvailableCallsController{
+        if(!this.getAvailableCallsController) this.getAvailableCallsController = GetAvailableCallsController.create();
         return this.getAvailableCallsController;
     }
 

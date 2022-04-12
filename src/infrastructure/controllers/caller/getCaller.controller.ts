@@ -5,7 +5,7 @@ import CallerDAO from "../../persistance/callerDAO";
 
 class GetCallerController{
 
-    private static getCallerController: GetCallerController = GetCallerController.create();
+    private static getCallerController: GetCallerController;
 
     private getCallerAplicationService: GetCallerAplicationService;
 
@@ -20,6 +20,7 @@ class GetCallerController{
     }
 
     static getController(): GetCallerController{
+        if(!this.getCallerController) this.getCallerController = GetCallerController.create();
         return this.getCallerController;
     }
 
