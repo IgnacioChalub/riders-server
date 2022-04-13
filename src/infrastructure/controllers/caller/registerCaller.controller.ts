@@ -4,7 +4,7 @@ import CallerDAO from "../../persistance/callerDAO";
 import IPasswordHasher from "../../../domain/infrastructureServices/passwordHasher";
 import PasswordHasherImplementation from "../../services/passwordHasherImplementation";
 import RegisterCallerAplicationService
-from "../../../aplication/aplicationServices/caller/registerCaller.aplicationService";
+    from "../../../aplication/aplicationServices/caller/registerCaller.aplicationService";
 import {Caller} from "../../../domain/entities/caller";
 
 class RegisterCallerController{

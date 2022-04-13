@@ -10,7 +10,7 @@ class Call{
     private readonly id: string;
 
     @Column()
-    private callerId: string;
+    private readonly callerId: string;
 
     @Column()
     private callerRatingStars: number;

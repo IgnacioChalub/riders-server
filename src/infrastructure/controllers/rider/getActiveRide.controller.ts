@@ -4,14 +4,13 @@ import CallDAO from "../../persistance/callDAO";
 import RideDAO from "../../persistance/rideDAO";
 import {Ride} from "../../../domain/entities/ride";
 import GetActiveRideAplicationService
-from "../../../aplication/aplicationServices/rider/getActiveRide.aplicationService";
+    from "../../../aplication/aplicationServices/rider/getActiveRide.aplicationService";
 
 class GetActiveRideController{
 
     private static getActiveRideController: GetActiveRideController;
 
     private getActiveRideAplicationService: GetActiveRideAplicationService;
-
 
     constructor(getActiveRideAplicationService: GetActiveRideAplicationService) {
         this.getActiveRideAplicationService = getActiveRideAplicationService;

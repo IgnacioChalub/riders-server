@@ -5,22 +5,20 @@ import CreateCallController from "../../controllers/caller/createCall.controller
 import validate from "../schemaValidator";
 import callSchema from "./schemas/callSchema";
 import {Ride} from "../../../domain/entities/ride";
-import IAcceptCallListener from "../../controllers/rider/observable/listeners/acceptCall.listener";
 
-class CallerSocketManager implements IAcceptCallListener{
+class CallerSocketManager{
 
     static instance: CallerSocketManager;
 
-    io: WebSocketServer;
-    socketIds = new Map<any, string>();
+    private io: WebSocketServer;
+    private socketIds = new Map<any, string>();
 
     constructor(io: WebSocketServer) {
         this.io = io;
     }
 
     static create(io: WebSocketServer): void{
-        const instance: CallerSocketManager = new CallerSocketManager(io);
-        this.instance = instance;
+        this.instance = new CallerSocketManager(io);
         this.instance.createConnectionAndListeners(); 
     }
 
@@ -50,7 +48,7 @@ class CallerSocketManager implements IAcceptCallListener{
     private createCallListener(socket: Socket): void {
         socket.on('create-call', async (message: any) => {
             try{
-                message = this.parseToJson(message);
+                message = this.validateJson(message);
             }catch(e){
                 socket.emit('create-call', {error: "invalid message"});
                 return;
@@ -93,7 +91,7 @@ class CallerSocketManager implements IAcceptCallListener{
         });
     }
 
-    private parseToJson(message: any) {
+    private validateJson(message: any) {
         if (typeof message != 'string') return message;
         try {
             return JSON.parse(message);
@@ -106,10 +104,6 @@ class CallerSocketManager implements IAcceptCallListener{
         const socketId: string|undefined = this.socketIds.get(ride.getCallerId());
         if(!socketId) return;
         this.io.to(socketId).emit('ride', ride);
-    }
-
-    test(): void {
-        console.log("test")
     }
 
 }

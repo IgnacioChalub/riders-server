@@ -4,29 +4,25 @@ import ICallRepository from "../../../aplication/repositories/call.repository";
 import CallDAO from "../../persistance/callDAO";
 import RideDAO from "../../persistance/rideDAO";
 import {Ride} from "../../../domain/entities/ride";
-import { CallerSocketManager } from "../../socket/caller/callerSocketManager";
-import AcceptCallObservableController from "./observable/observables/acceptCall.observableController";
-import IAcceptCallListener from "./observable/listeners/acceptCall.listener";
+import {CallerSocketManager} from "../../socket/caller/callerSocketManager";
 
-class AcceptCallController extends AcceptCallObservableController{
+class AcceptCallController{
 
     private static acceptCallController: AcceptCallController;
 
     private acceptCallAplicationService: AcceptCallAplicationService;
+    private callerSocketManager: CallerSocketManager;
 
-    constructor(acceptCallAplicationService: AcceptCallAplicationService) {
-        super();
+    constructor(acceptCallAplicationService: AcceptCallAplicationService, callerSocketManager: CallerSocketManager) {
         this.acceptCallAplicationService = acceptCallAplicationService;
+        this.callerSocketManager = callerSocketManager;
     }
 
     static create(): AcceptCallController{
         const rideRepository: IRideRepository = RideDAO.getInstance();
         const callRepository: ICallRepository = CallDAO.getInstance();
         const acceptCallAplicationService: AcceptCallAplicationService = new AcceptCallAplicationService(rideRepository, callRepository);
-        const acceptCallController: AcceptCallController = new AcceptCallController(acceptCallAplicationService);
-        const manager: IAcceptCallListener = CallerSocketManager.getInstance();
-        acceptCallController.addListener(manager);   
-        return acceptCallController;
+        return new AcceptCallController(acceptCallAplicationService, CallerSocketManager.getInstance());
     }
 
     static getController(): AcceptCallController{
@@ -36,7 +32,6 @@ class AcceptCallController extends AcceptCallObservableController{
 
     async run(callId: string, riderId: string): Promise<Ride>{
         const ride: Ride = await this.acceptCallAplicationService.run(callId, riderId);
-        this.notify(ride);
         return ride;
     }
 }
