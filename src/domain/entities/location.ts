@@ -27,16 +27,30 @@ class Location{
     }
 
     isInRadius(lat: number, long: number, km: number): boolean{
-        const latDist = this.toKm(lat - this.lat);
-        const longDist: number =  this.toKm(long - this.long);
-        const dist: number = Math.sqrt((latDist) ** 2 + (longDist) ** 2);
-        return dist <= km;
+        // const latDist = this.toKm(lat - this.lat);
+        // const longDist: number =  this.toKm(long - this.long);
+        // const dist: number = Math.sqrt((latDist) ** 2 + (longDist) ** 2);
+        // return dist <= km;
+        function toRad(x: number) {
+            return x * Math.PI / 180;
+        }
 
+        const dLat = toRad((lat) - (this.lat));
+        const dLon = toRad((long) - (this.long));
+
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(toRad(this.lat)) *
+            Math.cos(toRad(lat)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+        const distance: number = 12742 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        console.log(distance)
+        return distance <= km;
     }
 
-    private toKm(coords: number): number{
-        return coords*111;
-    }
+    // private toKm(coords: number): number{
+    //     return coords*111;
+    // }
 }
 
 export {Location};
