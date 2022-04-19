@@ -44,7 +44,7 @@ class Location{
             Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
         const distance: number = 12742 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        console.log(distance)
+
         return distance <= km;
     }
 

@@ -13,10 +13,9 @@ const riderRepository: IRiderRepository = new RiderDAOMock();
 const getAvailableCallsAplicationService: GetAvailableCallsAplicationService = new GetAvailableCallsAplicationService(callRepository, riderRepository);
 
 /**
- * Excpecting to get the first 3 calls from de repository.
  * The call id is its index in the list.
  */
-test('test get all available calls  ', async() => {
+test('test get all available calls', async() => {
     const rider: Rider = await riderRepository.getById("");
     const calls: Call[] = await getAvailableCallsAplicationService.run(rider.getId(), -34.411244, -58.663669);
     for (let i = 0; i < calls.length; i++) {
