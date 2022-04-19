@@ -18,6 +18,7 @@ const getAvailableCallsAplicationService: GetAvailableCallsAplicationService = n
 test('test get all available calls', async() => {
     const rider: Rider = await riderRepository.getById("");
     const calls: Call[] = await getAvailableCallsAplicationService.run(rider.getId(), -34.411244, -58.663669);
+    expect(calls.length).toBe(4)
     for (let i = 0; i < calls.length; i++) {
         expect(calls[i].getId()).toBe(i.toString());
     }
