@@ -6,6 +6,7 @@ import getRider from "./getRider.route";
 import getAvailableCalls from "./getAvailableCalls.route";
 import acceptCall from "./acceptCall.route";
 import getActiveRide from "./getActiveRide.route"
+import getRiderRideStatus from "./getRiderRideStatus.route";
 
 const router = express.Router();
 
@@ -18,7 +19,8 @@ const root = {
     getRider,
     getActiveRide,
     getAvailableCalls,
-    acceptCall
+    acceptCall,
+    getRiderRideStatus
 };
 
 const schema = buildSchema(`
@@ -52,6 +54,10 @@ const schema = buildSchema(`
     email: Email!
     vehicle: Vehicle!
     rating: Rating!
+  }
+  
+  type RiderRideStatus{
+    inRide: Boolean!
   }
   
   type Call {
@@ -107,6 +113,7 @@ const schema = buildSchema(`
     getRider: Rider
     getAvailableCalls(input: GetAvailableCallsInput): [Call]!
     getActiveRide: Ride
+    getRiderRideStatus: RiderRideStatus!
   }
   
   type Mutation {
