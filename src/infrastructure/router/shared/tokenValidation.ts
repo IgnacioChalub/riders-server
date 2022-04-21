@@ -16,6 +16,6 @@ export const tokenValidation = (token: string, accountTypeToValidate: string) =>
         if(accountType !== accountTypeToValidate) throw Error()
         return id;
     }catch(e: any){
-        throw Error("Acces denied");
+        throw Error("Access denied");
     }
 }
