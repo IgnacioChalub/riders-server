@@ -1,4 +1,5 @@
-import GetAvailableCallsAplicationService from "../../../../../src/aplication/aplicationServices/rider/getAvailableCalls.aplicationService";
+import GetAvailableCallsAplicationService
+    from "../../../../../src/aplication/aplicationServices/rider/getAvailableCalls.aplicationService";
 import IRiderRepository from "../../../../../src/aplication/repositories/rider.repository";
 import ICallRepository from "../../../../../src/aplication/repositories/call.repository";
 import CallDAOMock from "./CallDAOMock";
