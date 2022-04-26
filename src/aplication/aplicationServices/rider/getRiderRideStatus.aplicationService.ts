@@ -10,7 +10,7 @@ class GetRiderRideStatusAplicationService{
     }
 
     async run(riderId: string): Promise<boolean>{
-        const ride: Ride =  await this.rideRepository.getRiderActiveRide(riderId)
+	const ride: Ride =  await this.rideRepository.getRiderActiveRide(riderId)
         if(ride) return true;
         return false;
     }
