@@ -32,8 +32,16 @@ class Ride{
         this.date = date;
     }
 
+    getId(): string{
+        return this.id;
+    }
+
     getCallerId(): string{
         return this.call.getCallerId();
+    }
+
+    setRiderArrivedStartLocation(): void{
+        this.riderArrivedStartLocation = true;
     }
 }
 

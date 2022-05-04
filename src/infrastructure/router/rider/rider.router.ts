@@ -7,6 +7,7 @@ import getAvailableCalls from "./getAvailableCalls.route";
 import acceptCall from "./acceptCall.route";
 import getActiveRide from "./getActiveRide.route"
 import getRiderRideStatus from "./getRiderRideStatus.route";
+import updateRiderArrivedFirstLocation from "./updateRiderArrivedFirstLocation.route";
 
 const router = express.Router();
 
@@ -20,7 +21,8 @@ const root = {
     getActiveRide,
     getAvailableCalls,
     acceptCall,
-    getRiderRideStatus
+    getRiderRideStatus,
+    updateRiderArrivedFirstLocation
 };
 
 const schema = buildSchema(`
@@ -120,6 +122,7 @@ const schema = buildSchema(`
     registerRider(input: RegisterRiderInput): Rider
     logInRider(input: LogInRiderInput): Token
     acceptCall(input: AcceptCallInput): Ride
+    updateRiderArrivedFirstLocation: Ride
   }
 `);
 

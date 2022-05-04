@@ -51,6 +51,13 @@ class RideDAO implements IRideRepository{
         })
     }
 
+    async updateRiderArrivedFirstLocation(ride: Ride): Promise<void> {
+        await this.repository.update(ride.getId(),{
+            // @ts-ignore
+            riderArrivedStartLocation: true
+        })
+    }
+
 }
 
 export default RideDAO;

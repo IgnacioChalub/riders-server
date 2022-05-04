@@ -100,7 +100,7 @@ class CallerSocketManager{
         }
     }
 
-    newRide(ride: Ride): void {
+    sendRide(ride: Ride): void {
         const socketId: string|undefined = this.socketIds.get(ride.getCallerId());
         if(!socketId) return;
         this.io.to(socketId).emit('ride', ride);

@@ -7,7 +7,6 @@ class RegisterRiderAplicationService{
     private riderRepository: IRiderRepository;
     private createRiderDomainService: CreateRiderDomainService;
 
-
     constructor(riderRepository: IRiderRepository, createRiderDomainService: CreateRiderDomainService) {
         this.riderRepository = riderRepository;
         this.createRiderDomainService = createRiderDomainService;

@@ -32,7 +32,7 @@ class AcceptCallController{
 
     async run(callId: string, riderId: string): Promise<Ride>{
         const ride: Ride = await this.acceptCallAplicationService.run(callId, riderId);
-        this.callerSocketManager.newRide(ride);
+        this.callerSocketManager.sendRide(ride);
         return ride;
     }
 }
