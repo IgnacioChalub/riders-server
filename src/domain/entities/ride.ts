@@ -1,6 +1,5 @@
 import Call from "./call";
 import {Column, Entity, JoinColumn, OneToOne, PrimaryColumn} from "typeorm";
-import {Caller} from "./caller";
 
 @Entity()
 class Ride{

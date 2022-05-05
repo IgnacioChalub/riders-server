@@ -1,6 +1,5 @@
 import FinishRideAplicationService from "../../../aplication/aplicationServices/rider/finishRide.aplicationService";
 import RideDAO from "../../persistance/rideDAO";
-import CallDAO from "../../persistance/callDAO";
 import CallerDAO from "../../persistance/callerDAO";
 import {Ride} from "../../../domain/entities/ride";
 import {CallerSocketManager} from "../../socket/caller/callerSocketManager";
