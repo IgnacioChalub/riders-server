@@ -58,6 +58,13 @@ class RideDAO implements IRideRepository{
         })
     }
 
+    async finishRide(ride: Ride): Promise<void> {
+        await this.repository.update(ride.getId(),{
+            // @ts-ignore
+            active: false
+        })
+    }
+
 }
 
 export default RideDAO;

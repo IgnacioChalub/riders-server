@@ -3,6 +3,7 @@ import RegisterCallerController from "../../controllers/caller/registerCaller.co
 
 const registerCaller = async ({input}: any): Promise<Caller> => {
     const {name, surname, DNI, email, password} = input;
+    console.log("connection")
     return await RegisterCallerController.getController().run(name, surname, DNI, email, password);
 }
 

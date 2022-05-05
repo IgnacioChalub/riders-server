@@ -1,11 +1,12 @@
 import Call from "./call";
 import {Column, Entity, JoinColumn, OneToOne, PrimaryColumn} from "typeorm";
+import {Caller} from "./caller";
 
 @Entity()
 class Ride{
 
     @PrimaryColumn()
-    private id: string;
+    private readonly id: string;
 
     @Column()
     private riderId: string;
@@ -42,6 +43,10 @@ class Ride{
 
     setRiderArrivedStartLocation(): void{
         this.riderArrivedStartLocation = true;
+    }
+
+    finishRide(): void {
+        this.active = false;
     }
 }
 

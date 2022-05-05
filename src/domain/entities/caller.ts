@@ -15,7 +15,7 @@ class Caller{
     private surname: string;
 
     @Column()
-    private DNI: number;
+    private readonly DNI: number;
 
     @Column(() => Email)
     private email: Email;
@@ -46,6 +46,10 @@ class Caller{
 
     getRatingStart(): number{
         return this.rating.getStars();
+    }
+
+    isDNI(DNI: number): boolean{
+        return this.DNI === DNI;
     }
 
 }
