@@ -5,7 +5,7 @@ interface ICallRepository{
     generateLocationId(): Promise<string>;
     save(call: Call): void;
     setInactive(call: Call): void;
-    getById(id: string): Promise<Call>;
+    getActiveCall(id: string): Promise<Call>;
     getAllActiveCalls(callerId: string): Promise<Call[]>;
     getCallsInSquare(lat: number, long: number, km: number, vehicleType: string): Promise<Call[]>;
 }

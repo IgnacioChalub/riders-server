@@ -32,6 +32,18 @@ class CallDAO implements ICallRepository{
         })
     }
 
+    async getActiveCall(id: string): Promise<Call> {
+        return <Call>await this.repository.findOne({
+            relations: ['startLocation', 'finishLocation'],
+            where: {
+                // @ts-ignore
+                id: id,
+                // @ts-ignore
+                active: true,
+            },
+        })
+    }
+
     async getById(id: string): Promise<Call> {
         return <Call>await this.repository.findOne({
                 relations: ['startLocation', 'finishLocation'],

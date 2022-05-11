@@ -16,7 +16,7 @@ class AcceptCallAplicationService{
     async run(callId: string, riderId: string): Promise<Ride> {
         const ride: Ride = await this.rideRepository.getRiderActiveRide(riderId);
         if(ride) throw Error("Rider already in a ride");
-        const call: Call = await this.callRepository.getById(callId);
+        const call: Call = await this.callRepository.getActiveCall(callId);
         if(!call) throw Error("Call not found");
         call.accept();
         const rideId: string = await this.rideRepository.generateId();

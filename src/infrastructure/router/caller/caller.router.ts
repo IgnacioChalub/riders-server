@@ -5,6 +5,7 @@ import logInCaller from "./logInCaller.route";
 import getCaller from "./getCaller.route";
 import createCall from "./createCall.route";
 import getActiveCalls from "./getActiveCalls.route";
+import cancelCall from "./cancelCall.route";
 
 const router = express.Router();
 
@@ -16,7 +17,8 @@ const root = {
     logInCaller,
     getCaller,
     createCall,
-    getActiveCalls
+    getActiveCalls,
+    cancelCall
 };
 
 const schema = buildSchema(`
@@ -46,6 +48,10 @@ const schema = buildSchema(`
     startLong: Float!
     finishLat: Float!
     finishLong: Float!
+  }
+  
+  input CancelCallInput{
+    callId: String!
   }
 
   type Caller {
@@ -100,10 +106,13 @@ const schema = buildSchema(`
     getActiveCalls: [Call]!
   }
   
+  scalar Void
+  
   type Mutation {
     registerCaller(input: RegisterCallerInput): Caller
     logInCaller(input: LogInCallerInput): Token
     createCall(input: CreateCallInput): Call
+    cancelCall(input: CancelCallInput): Void
   }
 `);
 

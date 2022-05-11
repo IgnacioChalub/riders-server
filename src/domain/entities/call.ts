@@ -78,6 +78,10 @@ class Call{
     accept(): void{
         this.active = false;
     }
+
+    isCaller(callerId: string): boolean {
+        return this.callerId === callerId;
+    }
 }
 
 export default Call;
