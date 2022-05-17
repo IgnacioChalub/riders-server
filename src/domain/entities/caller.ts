@@ -24,7 +24,7 @@ class Caller{
     private readonly password: string;
 
     @Column(() => Rating)
-    private rating: Rating;
+    private readonly rating: Rating;
 
     constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, rating: Rating) {
         this.id = id;
@@ -50,6 +50,10 @@ class Caller{
 
     isDNI(DNI: number): boolean{
         return this.DNI === DNI;
+    }
+
+    addRating(stars: number): void{
+        this.rating.addRating(stars);
     }
 
 }

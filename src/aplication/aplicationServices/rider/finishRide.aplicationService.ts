@@ -17,10 +17,9 @@ class FinishRideAplicationService{
         const ride: Ride = await this.rideRepository.getRiderActiveRide(riderId);
         if(!ride) throw Error("Rider not in ride");
         const caller: Caller = await this.callerRepository.getById(ride.getCallerId());
-        if(caller.isDNI(callerDNI)) {
-            ride.finishRide();
-            await this.rideRepository.finishRide(ride);
-        }
+        if(!caller.isDNI(callerDNI)) throw Error("Incorrect DNI");
+        ride.finishRide();
+        await this.rideRepository.finishRide(ride);
         return ride;
     }
 

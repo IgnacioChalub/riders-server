@@ -65,6 +65,46 @@ class RideDAO implements IRideRepository{
         })
     }
 
+    async updateCallerRated(ride: Ride): Promise<void> {
+        await this.repository.update(ride.getId(),{
+            // @ts-ignore
+            callerRated: true
+        })
+    }
+
+    async updateRiderRated(ride: Ride): Promise<void> {
+        await this.repository.update(ride.getId(),{
+            // @ts-ignore
+            riderRated: true
+        })
+    }
+
+    async getRiderInactiveRides(riderId: string): Promise<Ride[]> {
+        return <Ride[]>await this.repository.find({
+            relations: ["call", "call.startLocation","call.finishLocation"],
+            where: {
+                // @ts-ignore
+                riderId: riderId,
+                // @ts-ignore
+                active: false
+            },
+        })
+    }
+
+    async getCallerInactiveRides(callerId: string): Promise<Ride[]> {
+        return <Ride[]>await this.repository.find({
+            relations: ["call", "call.startLocation","call.finishLocation"],
+            where: {
+                // @ts-ignore
+                call:{
+                    callerId: callerId
+                },
+                // @ts-ignore
+                active: false
+            },
+        })
+    }
+
 }
 
 export default RideDAO;

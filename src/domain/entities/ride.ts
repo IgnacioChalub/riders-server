@@ -8,7 +8,7 @@ class Ride{
     private readonly id: string;
 
     @Column()
-    private riderId: string;
+    private readonly riderId: string;
 
     @OneToOne(() => Call)
     @JoinColumn()
@@ -23,6 +23,12 @@ class Ride{
     @Column()
     private date: Date;
 
+    @Column()
+    private readonly callerRated: boolean;
+
+    @Column()
+    private readonly riderRated: boolean;
+
     constructor(id: string, riderId: string, call: Call, riderArrivedStartLocation: boolean, active: boolean, date: Date) {
         this.id = id
         this.riderId = riderId;
@@ -30,6 +36,8 @@ class Ride{
         this.riderArrivedStartLocation = riderArrivedStartLocation;
         this.active = active;
         this.date = date;
+        this.callerRated = false;
+        this.riderRated = false;
     }
 
     getId(): string{
@@ -40,12 +48,24 @@ class Ride{
         return this.call.getCallerId();
     }
 
+    getRiderId(): string{
+        return this.riderId;
+    }
+
     setRiderArrivedStartLocation(): void{
         this.riderArrivedStartLocation = true;
     }
 
-    finishRide(): void {
+    finishRide(): void{
         this.active = false;
+    }
+
+    riderIsRated(): boolean{
+        return this.riderRated;
+    }
+
+    callerIsRated(): boolean{
+        return this.callerRated;
     }
 }
 

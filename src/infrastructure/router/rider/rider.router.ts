@@ -9,6 +9,8 @@ import getActiveRide from "./getActiveRide.route"
 import getRiderRideStatus from "./getRiderRideStatus.route";
 import updateRiderArrivedFirstLocation from "./updateRiderArrivedFirstLocation.route";
 import finishRide from "./finishRide.route";
+import rateCaller from "./rateCaller.route";
+import getRiderRecord from "./getRiderRecord.route";
 
 const router = express.Router();
 
@@ -24,7 +26,9 @@ const root = {
     acceptCall,
     getRiderRideStatus,
     updateRiderArrivedFirstLocation,
-    finishRide
+    finishRide,
+    rateCaller,
+    getRiderRecord
 };
 
 const schema = buildSchema(`
@@ -53,6 +57,11 @@ const schema = buildSchema(`
   
   input FinishRideInput{
     callerDNI: Int!
+  }
+  
+  input RateCallerInput{
+    rideId: String!
+    stars: Int!
   }
   
   type Rider {
@@ -124,7 +133,10 @@ const schema = buildSchema(`
     getAvailableCalls(input: GetAvailableCallsInput): [Call]!
     getActiveRide: Ride
     getRiderRideStatus: RiderRideStatus!
+    getRiderRecord: [Ride]!
   }
+  
+  scalar Void
   
   type Mutation {
     registerRider(input: RegisterRiderInput): Rider
@@ -132,6 +144,7 @@ const schema = buildSchema(`
     acceptCall(input: AcceptCallInput): Ride
     updateRiderArrivedFirstLocation: Ride
     finishRide(input: FinishRideInput): Ride
+    rateCaller(input: RateCallerInput): Void
   }
 `);
 

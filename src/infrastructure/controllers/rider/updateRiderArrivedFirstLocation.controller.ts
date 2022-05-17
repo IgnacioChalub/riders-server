@@ -28,7 +28,7 @@ class UpdateRiderArrivedFirstLocationController{
 
     async run(riderId: string): Promise<Ride> {
         const ride: Ride = await this.updateRiderArrivedFirstLocationAplicationService.run(riderId);
-        this.callerSocketManager.sendRide(ride);
+        this.callerSocketManager.sendRide(ride, "Rider arrived first location");
         return ride;
     }
 }

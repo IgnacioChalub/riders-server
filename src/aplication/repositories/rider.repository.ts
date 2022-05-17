@@ -6,6 +6,7 @@ interface IRiderRepository{
     getByDNIorEmail(DNI: number, emailAddress: string): Promise<Rider>;
     getByEmail(email: string): Promise<Rider>;
     getById(id: string): Promise<Rider>;
+    saveRating(rider: Rider): Promise<void>;
 }
 
 export default IRiderRepository;

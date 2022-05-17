@@ -52,6 +52,10 @@ class Rider{
     getVehicleType(): string {
         return this.vehicle.getType();
     }
+
+    addRating(stars: number): void{
+        this.rating.addRating(stars);
+    }
 }
 
 export default Rider;

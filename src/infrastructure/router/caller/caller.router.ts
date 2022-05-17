@@ -6,6 +6,8 @@ import getCaller from "./getCaller.route";
 import createCall from "./createCall.route";
 import getActiveCalls from "./getActiveCalls.route";
 import cancelCall from "./cancelCall.route";
+import rateRider from "./rateRider.route";
+import getCallerRecord from "./getCallerRecord.route";
 
 const router = express.Router();
 
@@ -18,7 +20,9 @@ const root = {
     getCaller,
     createCall,
     getActiveCalls,
-    cancelCall
+    cancelCall,
+    rateRider,
+    getCallerRecord
 };
 
 const schema = buildSchema(`
@@ -52,6 +56,11 @@ const schema = buildSchema(`
   
   input CancelCallInput{
     callId: String!
+  }
+  
+  input RateRiderInput{
+    rideId: String!
+    stars: Int!
   }
 
   type Caller {
@@ -97,6 +106,14 @@ const schema = buildSchema(`
     long: Float!
   }
 
+  type Ride{
+    id: String!
+    call: Call!
+    riderArrivedStartLocation: Boolean!
+    date: Date!
+    active: Boolean!
+  }
+
   type Token{
     token: String!
   }
@@ -104,6 +121,7 @@ const schema = buildSchema(`
   type Query {
     getCaller: Caller
     getActiveCalls: [Call]!
+    getCallerRecord: [Ride]!
   }
   
   scalar Void
@@ -113,6 +131,7 @@ const schema = buildSchema(`
     logInCaller(input: LogInCallerInput): Token
     createCall(input: CreateCallInput): Call
     cancelCall(input: CancelCallInput): Void
+    rateRider(input: RateRiderInput): Void
   }
 `);
 

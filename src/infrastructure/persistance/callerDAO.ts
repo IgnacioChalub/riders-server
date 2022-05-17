@@ -50,6 +50,10 @@ class CallerDAO implements ICallerRepository{
         } while (caller)
         return id;
     }
+
+    async saveRating(caller: Caller): Promise<void> {
+        await this.repository.save(caller)
+    }
 }
 
 export default CallerDAO;

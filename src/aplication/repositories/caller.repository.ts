@@ -6,6 +6,7 @@ interface ICallerRepository{
     getByDNIorEmail(DNI: number, emailAddress: string): Promise<Caller>;
     getByEmail(email: string): Promise<Caller>;
     getById(id: string): Promise<Caller>;
+    saveRating(caller: Caller): Promise<void>;
 }
 
 export default ICallerRepository;

@@ -50,6 +50,10 @@ class RiderDAO implements IRiderRepository{
         } while (rider)
         return id;
     }
+
+    async saveRating(rider: Rider): Promise<void> {
+        await this.repository.save(rider)
+    }
 }
 
 export default RiderDAO;
