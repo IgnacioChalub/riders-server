@@ -22,6 +22,8 @@ const AppDataSource: DataSource = new DataSource({
         Ride
     ],
     synchronize: true,
+    ssl: true
+    
 })
 
 const runDbConnection = async (): Promise<void> => {
