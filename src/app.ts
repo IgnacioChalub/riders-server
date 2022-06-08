@@ -6,7 +6,7 @@ import {callerRouter} from "./infrastructure/router/caller/caller.router";
 import {riderRouter} from "./infrastructure/router/rider/rider.router";
 
 const app: Application = express();
-const PORT = 5000;
+const PORT = 8080;
 const cors = require('cors')
 
 //settings
