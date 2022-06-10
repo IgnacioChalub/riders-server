@@ -6,7 +6,14 @@ import 'dotenv/config'
 import {Location} from "../../domain/entities/location";
 import {Ride} from "../../domain/entities/ride";
 
-const port: number = <number><unknown>process.env.DB_PORT;
+
+const toBool = (string: String) => {
+    if(string === 'true') return true;
+    else if(string === 'false') return false;
+};
+
+const port: number = <number><unknown>process.env.DB_PORT;      
+const ssl: boolean|undefined = toBool(<string><unknown>process.env.SSL);
 const AppDataSource: DataSource = new DataSource({
     type: "postgres",
     host: process.env.DB_HOST,
@@ -22,8 +29,7 @@ const AppDataSource: DataSource = new DataSource({
         Ride
     ],
     synchronize: true,
-    ssl: true
-    
+    ssl: ssl
 })
 
 const runDbConnection = async (): Promise<void> => {
