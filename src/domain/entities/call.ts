@@ -12,7 +12,7 @@ class Call{
     @Column()
     private readonly callerId: string;
 
-    @Column()
+    @Column({type:"decimal"})
     private callerRatingStars: number;
 
     @Column(() => RequestedVehicles)

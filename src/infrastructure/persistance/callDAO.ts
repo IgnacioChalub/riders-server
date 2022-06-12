@@ -22,7 +22,7 @@ class CallDAO implements ICallRepository{
     async save(call: Call): Promise<void> {
         await this.locationRepository.save(call.getStartLocation()).then();
         await this.locationRepository.save(call.getFinishLocation()).then();
-        this.repository.save(call).then()
+        await this.repository.save(call).then()
     }
 
     async setInactive(call: Call): Promise<void> {
