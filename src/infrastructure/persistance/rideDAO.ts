@@ -61,7 +61,8 @@ class RideDAO implements IRideRepository{
     async finishRide(ride: Ride): Promise<void> {
         await this.repository.update(ride.getId(),{
             // @ts-ignore
-            active: false
+            active: false,
+            finishDate: ride.getFinishDate(),
         })
     }
 
@@ -72,10 +73,11 @@ class RideDAO implements IRideRepository{
         })
     }
 
-    async updateRiderRated(ride: Ride): Promise<void> {
+    async updateRiderRated(ride: Ride, riderRatingStars: number): Promise<void> {
         await this.repository.update(ride.getId(),{
             // @ts-ignore
-            riderRated: true
+            riderRated: true,
+            riderRatingStars: riderRatingStars
         })
     }
 

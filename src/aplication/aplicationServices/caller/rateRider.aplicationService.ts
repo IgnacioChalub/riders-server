@@ -26,7 +26,7 @@ class RateRiderAplicationService{
         this.rateRiderDomainService.run(callerId, ride, rider, stars);
         
         this.riderRepository.saveRating(rider).then( () =>{
-            this.rideRepository.updateRiderRated(ride);
+            this.rideRepository.updateRiderRated(ride, stars);
         });
     }
 }

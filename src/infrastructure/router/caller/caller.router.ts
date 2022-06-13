@@ -112,6 +112,9 @@ const schema = buildSchema(`
     riderArrivedStartLocation: Boolean!
     date: Date!
     active: Boolean!
+    vehicleUsed: String!
+    finishDate: Date!
+    riderRatingStars: Float!
   }
 
   type Token{

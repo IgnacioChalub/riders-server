@@ -29,7 +29,16 @@ class Ride{
     @Column()
     private readonly riderRated: boolean;
 
-    constructor(id: string, riderId: string, call: Call, riderArrivedStartLocation: boolean, active: boolean, date: Date) {
+    @Column()
+    private vehicleUsed: string;
+
+    @Column()
+    private finishDate: Date;
+
+    @Column({type:"decimal"})
+    private riderRatingStars: number;
+
+    constructor(id: string, riderId: string, call: Call, riderArrivedStartLocation: boolean, active: boolean, date: Date, vehicelUsed: string, finishDate: Date, riderRatingStars: number) {
         this.id = id
         this.riderId = riderId;
         this.call = call;
@@ -38,6 +47,9 @@ class Ride{
         this.date = date;
         this.callerRated = false;
         this.riderRated = false;
+        this.vehicleUsed = vehicelUsed;
+        this.finishDate = finishDate;
+        this.riderRatingStars = riderRatingStars;
     }
 
     getId(): string{
@@ -58,6 +70,7 @@ class Ride{
 
     finishRide(): void{
         this.active = false;
+        this.finishDate = new Date();
     }
 
     riderIsRated(): boolean{
@@ -66,6 +79,10 @@ class Ride{
 
     callerIsRated(): boolean{
         return this.callerRated;
+    }
+
+    getFinishDate(): Date{
+        return this.finishDate;
     }
 }
 

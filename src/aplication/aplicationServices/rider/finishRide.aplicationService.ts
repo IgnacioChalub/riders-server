@@ -16,10 +16,13 @@ class FinishRideAplicationService{
     async run(riderId: string, callerDNI: number): Promise<Ride>{
         const ride: Ride = await this.rideRepository.getRiderActiveRide(riderId);
         if(!ride) throw Error("Rider not in ride");
+       
         const caller: Caller = await this.callerRepository.getById(ride.getCallerId());
         if(!caller.isDNI(callerDNI)) throw Error("Incorrect DNI");
+        
         ride.finishRide();
         await this.rideRepository.finishRide(ride);
+        
         return ride;
     }
 

@@ -5,6 +5,8 @@ import CallDAO from "../../persistance/callDAO";
 import RideDAO from "../../persistance/rideDAO";
 import {Ride} from "../../../domain/entities/ride";
 import {CallerSocketManager} from "../../socket/caller/callerSocketManager";
+import IRiderRepository from "../../../aplication/repositories/rider.repository";
+import RiderDAO from "../../persistance/riderDAO";
 
 class AcceptCallController{
 
@@ -21,7 +23,8 @@ class AcceptCallController{
     static create(): AcceptCallController{
         const rideRepository: IRideRepository = RideDAO.getInstance();
         const callRepository: ICallRepository = CallDAO.getInstance();
-        const acceptCallAplicationService: AcceptCallAplicationService = new AcceptCallAplicationService(rideRepository, callRepository);
+        const riderRepository: IRiderRepository = RiderDAO.getInstance();
+        const acceptCallAplicationService: AcceptCallAplicationService = new AcceptCallAplicationService(rideRepository, callRepository, riderRepository);
         return new AcceptCallController(acceptCallAplicationService, CallerSocketManager.getInstance());
     }
 

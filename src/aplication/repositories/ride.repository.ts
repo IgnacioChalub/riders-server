@@ -8,7 +8,7 @@ interface IRideRepository {
     updateRiderArrivedFirstLocation(ride: Ride): void;
     finishRide(ride: Ride): void;
     updateCallerRated(ride: Ride): Promise<void>;
-    updateRiderRated(ride: Ride): Promise<void>;
+    updateRiderRated(ride: Ride, riderRatingStars: number): Promise<void>;
     getRiderInactiveRides(riderId: string): Promise<Ride[]>;
     getCallerInactiveRides(callerId: string): Promise<Ride[]>
 }
