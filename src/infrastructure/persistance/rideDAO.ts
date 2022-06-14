@@ -107,6 +107,20 @@ class RideDAO implements IRideRepository{
         })
     }
 
+    async getCallerActiveRides(callerId: string): Promise<Ride[]> {
+        return <Ride[]>await this.repository.find({
+            relations: ["call", "call.startLocation","call.finishLocation"],
+            where: {
+                // @ts-ignore
+                call:{
+                    callerId: callerId
+                },
+                // @ts-ignore
+                active: true
+            },
+        })
+    }
+
 }
 
 export default RideDAO;

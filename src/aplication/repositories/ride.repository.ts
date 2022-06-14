@@ -10,7 +10,8 @@ interface IRideRepository {
     updateCallerRated(ride: Ride): Promise<void>;
     updateRiderRated(ride: Ride, riderRatingStars: number): Promise<void>;
     getRiderInactiveRides(riderId: string): Promise<Ride[]>;
-    getCallerInactiveRides(callerId: string): Promise<Ride[]>
+    getCallerInactiveRides(callerId: string): Promise<Ride[]>;
+    getCallerActiveRides(callerId: string): Promise<Ride[]>;
 }
 
 export default IRideRepository;

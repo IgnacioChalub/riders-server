@@ -8,6 +8,7 @@ import getActiveCalls from "./getActiveCalls.route";
 import cancelCall from "./cancelCall.route";
 import rateRider from "./rateRider.route";
 import getCallerRecord from "./getCallerRecord.route";
+import getCallerActiveRides from "./getCallerActiveRides.route";
 
 const router = express.Router();
 
@@ -22,7 +23,8 @@ const root = {
     getActiveCalls,
     cancelCall,
     rateRider,
-    getCallerRecord
+    getCallerRecord,
+    getCallerActiveRides
 };
 
 const schema = buildSchema(`
@@ -125,6 +127,7 @@ const schema = buildSchema(`
     getCaller: Caller
     getActiveCalls: [Call]!
     getCallerRecord: [Ride]!
+    getCallerActiveRides: [Ride]!
   }
   
   scalar Void
