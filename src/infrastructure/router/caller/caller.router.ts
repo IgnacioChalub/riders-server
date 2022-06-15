@@ -86,7 +86,7 @@ const schema = buildSchema(`
 
   type Call {
     id: String
-    callerRatingStars: Int!
+    callerRatingStars: Float!
     requestedVehicles: RequestedVehicles!
     priceInCents: Int!
     description: String!
