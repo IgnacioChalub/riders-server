@@ -40,6 +40,7 @@ class AcceptCallController{
     async run(callId: string, riderId: string): Promise<Ride>{
         const ride: Ride = await this.acceptCallAplicationService.run(callId, riderId);
         this.callerSocketManager.sendRide(ride, "Your ride has been accepted");
+        this.callerSocketManager.addRide(ride.getId(), ride.getCallerId(), ride.getRiderId());
         return ride;
     }
 }

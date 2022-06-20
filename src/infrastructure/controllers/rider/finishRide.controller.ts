@@ -30,6 +30,7 @@ class FinishRideController{
     async run(riderId: string, callerDNI: number): Promise<Ride> {
         const ride: Ride = await this.finishRideAplicationService.run(riderId, callerDNI);
         this.callerSocketManager.sendRide(ride, "Ride finished");
+        this.callerSocketManager.finishRide(ride.getId());
         return ride;
     }
 }
