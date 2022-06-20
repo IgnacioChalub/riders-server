@@ -7,6 +7,7 @@ interface ICallerRepository{
     getByEmail(email: string): Promise<Caller>;
     getById(id: string): Promise<Caller>;
     saveRating(caller: Caller): Promise<void>;
+    setEmailNotifications(caller: Caller): Promise<void>;
 }
 
 export default ICallerRepository;

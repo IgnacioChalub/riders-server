@@ -54,6 +54,13 @@ class CallerDAO implements ICallerRepository{
     async saveRating(caller: Caller): Promise<void> {
         await this.repository.save(caller)
     }
+
+    async setEmailNotifications(caller: Caller): Promise<void> {
+        await this.repository.update(caller.getId(),{
+            // @ts-ignore
+            emailNotifications: caller.recivesEmailNotifications()
+        })
+    }
 }
 
 export default CallerDAO;

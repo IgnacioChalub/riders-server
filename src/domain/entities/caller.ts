@@ -67,6 +67,10 @@ class Caller{
     recivesEmailNotifications(): boolean{
         return this.emailNotifications;
     }
+
+    setEmailNotifications(emailNotifications: boolean): void {
+        this.emailNotifications = emailNotifications;
+    }
 }
 
 export {Caller};
