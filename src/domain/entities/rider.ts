@@ -60,6 +60,11 @@ class Rider{
     getEmail(): string{
         return this.email.getAddress();
     }
+
+    hasMinStarsRequired(stars: number): boolean {
+        return (this.rating.getStars() >= stars)
+    }
+
 }
 
 export default Rider;

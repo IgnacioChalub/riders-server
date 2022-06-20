@@ -18,7 +18,7 @@ class GetAvailableCallsAplicationService{
         const callsInSquare: Call[] = await this.callRepository.getCallsInSquare(riderLat, riderLong, 10, rider.getVehicleType());
         const filteredCalls: Call[] = [];
         for (const call of callsInSquare) {
-            if(call.isInRadius(riderLat, riderLong, 10)) filteredCalls.push(call);
+            if(call.isInRadius(riderLat, riderLong, 10) && rider.hasMinStarsRequired(call.getMinRiderRatingStars())) filteredCalls.push(call);
         }
         return filteredCalls;
     }

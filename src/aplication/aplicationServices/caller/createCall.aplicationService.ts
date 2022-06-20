@@ -18,7 +18,7 @@ class CreateCallAplicationService{
         this.createCallDomainService = createCallDomainService;
     }
 
-    async run(callerId: string, vehicleTypes: string[], priceInCents: number, description: string, bicycle: boolean, motorcycle: boolean, car: boolean, van: boolean, startAddress: string, finishAddress: string, startLat: number, startLong: number, finishLat: number, finishLong: number): Promise<Call>{
+    async run(callerId: string, vehicleTypes: string[], priceInCents: number, description: string, bicycle: boolean, motorcycle: boolean, car: boolean, van: boolean, startAddress: string, finishAddress: string, startLat: number, startLong: number, finishLat: number, finishLong: number, minRiderRatingStars: number): Promise<Call>{
         const caller: Caller = await this.callerRepository.getById(callerId);
         if(!caller) throw Error('Caller not found');
 
@@ -29,7 +29,7 @@ class CreateCallAplicationService{
         
         const requestedVehicles: RequestedVehicles = RequestedVehicles.create(bicycle, motorcycle, car, van);
         
-        const call: Call = this.createCallDomainService.run(id, caller, requestedVehicles, priceInCents, description, startLocation, finishLocation, new Date());
+        const call: Call = this.createCallDomainService.run(id, caller, requestedVehicles, priceInCents, description, startLocation, finishLocation, new Date(), minRiderRatingStars);
         this.callRepository.save(call);
         
         return call;

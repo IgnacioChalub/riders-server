@@ -5,9 +5,10 @@ import RequestedVehicles from "../../entities/requestedVehicles";
 
 class CreateCallDomainService{
 
-    run(id: string, caller: Caller, requestedVehicles: RequestedVehicles, priceInCents: number, description: string, startLocation: Location, finishLocation: Location, date: Date): Call{
+    run(id: string, caller: Caller, requestedVehicles: RequestedVehicles, priceInCents: number, description: string, startLocation: Location, finishLocation: Location, date: Date, minRiderRatingStars: number): Call{
         if(priceInCents < 0) throw Error("Price can not be under 0");
-        return new Call(id, caller.getId(), caller.getRatingStart(), requestedVehicles, priceInCents, description, startLocation, finishLocation, date, true);
+        if(minRiderRatingStars < 0 || minRiderRatingStars > 5) throw Error("Invalid min rider rating stars");
+        return new Call(id, caller.getId(), caller.getRatingStart(), requestedVehicles, priceInCents, description, startLocation, finishLocation, date, true, minRiderRatingStars);
     }
 }
 

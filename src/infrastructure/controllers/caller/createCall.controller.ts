@@ -29,8 +29,8 @@ class CreateCallController{
         return this.createCallController;
     }
 
-    async run(callerId: string, vehicleTypes: string[], priceInCents: number, description: string, bicycle: boolean, motorcycle: boolean, car: boolean, van: boolean, startAddress: string, finishAddress: string, startLat: number, startLong: number, finishLat: number, finishLong: number): Promise<Call>{
-        return await this.createCallAplicationService.run(callerId, vehicleTypes, priceInCents, description, bicycle, motorcycle, car, van, startAddress, finishAddress, startLat, startLong, finishLat, finishLong);
+    async run(callerId: string, vehicleTypes: string[], priceInCents: number, description: string, bicycle: boolean, motorcycle: boolean, car: boolean, van: boolean, startAddress: string, finishAddress: string, startLat: number, startLong: number, finishLat: number, finishLong: number, minRiderRatingStars: number): Promise<Call>{
+        return await this.createCallAplicationService.run(callerId, vehicleTypes, priceInCents, description, bicycle, motorcycle, car, van, startAddress, finishAddress, startLat, startLong, finishLat, finishLong, minRiderRatingStars);
     }
 }
 

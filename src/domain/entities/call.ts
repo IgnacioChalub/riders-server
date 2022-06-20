@@ -38,7 +38,10 @@ class Call{
     @Column()
     private active: boolean;
 
-    constructor(id: string, callerId: string, callerRatingStars: number, requestedVehicles: RequestedVehicles, priceInCents: number, description: string, startLocation: Location, finishLocation: Location, date: Date, active: boolean) {
+    @Column({type:"decimal"})
+    private minRiderRatingStars: number;
+
+    constructor(id: string, callerId: string, callerRatingStars: number, requestedVehicles: RequestedVehicles, priceInCents: number, description: string, startLocation: Location, finishLocation: Location, date: Date, active: boolean, minRiderRatingStars: number) {
         this.id = id;
         this.callerId = callerId;
         this.callerRatingStars = callerRatingStars;
@@ -49,6 +52,7 @@ class Call{
         this.finishLocation = finishLocation;
         this.date = date;
         this.active = active;
+        this.minRiderRatingStars = minRiderRatingStars;
     }
 
     getId(): string{
@@ -81,6 +85,10 @@ class Call{
 
     isCaller(callerId: string): boolean {
         return this.callerId === callerId;
+    }
+
+    getMinRiderRatingStars(): number {
+        return this.minRiderRatingStars;
     }
 }
 

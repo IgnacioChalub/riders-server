@@ -89,9 +89,10 @@ class CallerSocketManager{
                 startLat,
                 startLong,
                 finishLat,
-                finishLong
+                finishLong,
+                minRiderRatingStars
             } = message;
-            const call: Call = await CreateCallController.getController().run(id, vehicleTypes, priceInCents, description, bicycle, motorcycle, car, van, startAddress, finishAddress, startLat, startLong, finishLat, finishLong);
+            const call: Call = await CreateCallController.getController().run(id, vehicleTypes, priceInCents, description, bicycle, motorcycle, car, van, startAddress, finishAddress, startLat, startLong, finishLat, finishLong, minRiderRatingStars);
             socket.emit('create-call', call);
         });
     }

@@ -56,6 +56,7 @@ const schema = buildSchema(`
     startLong: Float!
     finishLat: Float!
     finishLong: Float!
+    minRiderRatingStars: Float!
   }
   
   input CancelCallInput{
