@@ -56,6 +56,10 @@ class Caller{
         this.rating.addRating(stars);
     }
 
+    getEmail(): string{
+        return this.email.getAddress();
+    }
+
 }
 
 export {Caller};

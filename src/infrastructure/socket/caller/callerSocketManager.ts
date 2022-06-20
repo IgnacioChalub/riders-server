@@ -6,6 +6,11 @@ import validate from "../schemaValidator";
 import callSchema from "./schemas/callSchema";
 import {Ride} from "../../../domain/entities/ride";
 
+/**
+ * 
+    LISTENERS: 'connection', 'create-call', 'ride'
+ */
+
 class CallerSocketManager{
 
     static instance: CallerSocketManager;

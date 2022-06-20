@@ -56,6 +56,10 @@ class Rider{
     addRating(stars: number): void{
         this.rating.addRating(stars);
     }
+
+    getEmail(): string{
+        return this.email.getAddress();
+    }
 }
 
 export default Rider;

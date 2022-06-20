@@ -5,6 +5,7 @@ import PasswordHasherImplementation from "../../services/passwordHasherImplement
 import LogInCallerAplicationService from "../../../aplication/aplicationServices/caller/logInCaller.aplicationService";
 import ILogger from "../../../aplication/infrastructureServices/logger";
 import JWTLogger from "../../services/logger";
+import EmailService from "../../services/emailServiceImplementation";
 
 class LogInCallerController{
 
@@ -20,7 +21,7 @@ class LogInCallerController{
         const callerRepository: ICallerRepository = CallerDAO.getInstance();
         const passwordHasher: IPasswordHasher = new PasswordHasherImplementation();
         const logger: ILogger = new JWTLogger();
-        const logInCallerAplicationService: LogInCallerAplicationService = new LogInCallerAplicationService(logger, passwordHasher, callerRepository);
+        const logInCallerAplicationService: LogInCallerAplicationService = new LogInCallerAplicationService(logger, passwordHasher, callerRepository, EmailService.getInstance());
         return new LogInCallerController(logInCallerAplicationService);
     }
 

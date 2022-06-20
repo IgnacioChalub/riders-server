@@ -22,6 +22,10 @@ class Email{
         }
         throw Error('Invalid email');
     }
+
+    getAddress(): string {
+        return this.address;
+    }
 }
 
 export {Email};

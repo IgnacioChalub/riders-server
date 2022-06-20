@@ -5,6 +5,7 @@ import RiderDAO from "../../persistance/riderDAO";
 import LogInRiderAplicationService from "../../../aplication/aplicationServices/rider/logInRider.aplicationService";
 import ILogger from "../../../aplication/infrastructureServices/logger";
 import JWTLogger from "../../services/logger";
+import EmailService from "../../services/emailServiceImplementation";
 
 class LogInRiderController{
 
@@ -20,7 +21,7 @@ class LogInRiderController{
         const riderRepository: IRiderRepository = RiderDAO.getInstance();
         const passwordHasher: IPasswordHasher = new PasswordHasherImplementation();
         const logger: ILogger = new JWTLogger();
-        const logInRiderAplicationService: LogInRiderAplicationService = new LogInRiderAplicationService(logger, passwordHasher, riderRepository);
+        const logInRiderAplicationService: LogInRiderAplicationService = new LogInRiderAplicationService(logger, passwordHasher, riderRepository, EmailService.getInstance());
         return new LogInRiderController(logInRiderAplicationService);
     }
 
