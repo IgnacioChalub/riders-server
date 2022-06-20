@@ -3,6 +3,8 @@ import UpdateRiderArrivedFirstLocationAplicationService
 import RideDAO from "../../persistance/rideDAO";
 import {Ride} from "../../../domain/entities/ride";
 import {CallerSocketManager} from "../../socket/caller/callerSocketManager";
+import CallerDAO from "../../persistance/callerDAO";
+import EmailService from "../../services/emailServiceImplementation";
 
 class UpdateRiderArrivedFirstLocationController{
 
@@ -17,7 +19,7 @@ class UpdateRiderArrivedFirstLocationController{
     }
 
     static create(): UpdateRiderArrivedFirstLocationController{
-        const updateRiderArrivedFirstLocationAplicationService: UpdateRiderArrivedFirstLocationAplicationService = new UpdateRiderArrivedFirstLocationAplicationService(RideDAO.getInstance());
+        const updateRiderArrivedFirstLocationAplicationService: UpdateRiderArrivedFirstLocationAplicationService = new UpdateRiderArrivedFirstLocationAplicationService(RideDAO.getInstance(), CallerDAO.getInstance(), EmailService.getInstance());
         return new UpdateRiderArrivedFirstLocationController(updateRiderArrivedFirstLocationAplicationService, CallerSocketManager.getInstance());
     }
 

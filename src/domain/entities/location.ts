@@ -48,9 +48,9 @@ class Location{
         return distance <= km;
     }
 
-    // private toKm(coords: number): number{
-    //     return coords*111;
-    // }
+    getAddress(): string{
+        return this.address;
+    }
 }
 
 export {Location};

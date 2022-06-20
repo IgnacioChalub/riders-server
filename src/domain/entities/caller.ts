@@ -26,7 +26,10 @@ class Caller{
     @Column(() => Rating)
     private readonly rating: Rating;
 
-    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, rating: Rating) {
+    @Column()
+    private emailNotifications: boolean;
+
+    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, rating: Rating, emailNotifications: boolean) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -34,6 +37,7 @@ class Caller{
         this.email = email;
         this.password = password;
         this.rating = rating;
+        this.emailNotifications = emailNotifications;
     }
 
     getId(): string{
@@ -60,6 +64,9 @@ class Caller{
         return this.email.getAddress();
     }
 
+    recivesEmailNotifications(): boolean{
+        return this.emailNotifications;
+    }
 }
 
 export {Caller};
