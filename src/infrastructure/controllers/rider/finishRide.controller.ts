@@ -2,7 +2,7 @@ import FinishRideAplicationService from "../../../aplication/aplicationServices/
 import RideDAO from "../../persistance/rideDAO";
 import CallerDAO from "../../persistance/callerDAO";
 import {Ride} from "../../../domain/entities/ride";
-import {CallerSocketManager} from "../../socket/caller/callerSocketManager";
+import {SocketManager} from "../../socket/socketManager";
 import EmailService from "../../services/emailServiceImplementation";
 
 class FinishRideController{
@@ -10,16 +10,16 @@ class FinishRideController{
     private static finishRideController: FinishRideController;
 
     private finishRideAplicationService: FinishRideAplicationService;
-    private callerSocketManager: CallerSocketManager;
+    private socketManager: SocketManager;
 
-    constructor(finishRideAplicationService: FinishRideAplicationService, callerSocketManager: CallerSocketManager) {
+    constructor(finishRideAplicationService: FinishRideAplicationService, socketManager: SocketManager) {
         this.finishRideAplicationService = finishRideAplicationService;
-        this.callerSocketManager = callerSocketManager;
+        this.socketManager = socketManager;
     }
 
     static create(): FinishRideController{
         const finishRideAplicationService: FinishRideAplicationService = new FinishRideAplicationService(RideDAO.getInstance(), CallerDAO.getInstance(), EmailService.getInstance());
-        return new FinishRideController(finishRideAplicationService, CallerSocketManager.getInstance());
+        return new FinishRideController(finishRideAplicationService, SocketManager.getInstance());
     }
 
     static getController(): FinishRideController{
@@ -29,8 +29,8 @@ class FinishRideController{
 
     async run(riderId: string, callerDNI: number): Promise<Ride> {
         const ride: Ride = await this.finishRideAplicationService.run(riderId, callerDNI);
-        this.callerSocketManager.sendRide(ride, "Ride finished");
-        this.callerSocketManager.finishRide(ride.getId());
+        this.socketManager.sendRide(ride, "Ride finished");
+        this.socketManager.finishRide(ride.getId());
         return ride;
     }
 }

@@ -1,10 +1,8 @@
 import {Server as WebSocketServer, Socket} from "socket.io";
-import {tokenValidation} from "../../router/shared/tokenValidation";
-import Call from "../../../domain/entities/call";
-import CreateCallController from "../../controllers/caller/createCall.controller";
-import validate from "../schemaValidator";
-import {Ride} from "../../../domain/entities/ride";
-import messageSchema from "./schemas/callSchema";
+import {tokenValidation} from "../router/shared/tokenValidation";
+import validate from "./schemaValidator";
+import {Ride} from "../../domain/entities/ride";
+import messageSchema from "./messageSchema";
 
 /**
  * 
@@ -22,9 +20,9 @@ class RideParticipants{
     }
 }
 
-class CallerSocketManager{
+class SocketManager{
 
-    static instance: CallerSocketManager;
+    static instance: SocketManager;
 
     private io: WebSocketServer;
 
@@ -37,11 +35,11 @@ class CallerSocketManager{
     }
 
     static create(io: WebSocketServer): void{
-        this.instance = new CallerSocketManager(io);
+        this.instance = new SocketManager(io);
         this.instance.createConnectionAndListeners(); 
     }
 
-    static getInstance(): CallerSocketManager{
+    static getInstance(): SocketManager{
         return this.instance;
     }
 
@@ -156,4 +154,4 @@ class CallerSocketManager{
 
 }
 
-export {CallerSocketManager};
+export {SocketManager};

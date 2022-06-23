@@ -1,12 +1,12 @@
 import http from "http";
 import {Server as WebSocketServer} from "socket.io";
 import app from "../../app";
-import {CallerSocketManager} from "./caller/callerSocketManager";
+import {SocketManager} from "./socketManager";
 
 
 const server = http.createServer(app);
 const io = new WebSocketServer(server);
 
-CallerSocketManager.create(io);
+SocketManager.create(io);
 
 export {server};
