@@ -20,8 +20,8 @@ class AddCallerBalanceController{
         return this.addCallerBalanceController;
     }
 
-    async run(callerId: string, balance: number): Promise<void> {
-        this.addCallerBalanceAplicationService.run(callerId, balance);
+    async run(callerId: string, balance: number): Promise<number> {
+        return await this.addCallerBalanceAplicationService.run(callerId, balance);
     } 
 
 }

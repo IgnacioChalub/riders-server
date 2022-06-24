@@ -10,6 +10,7 @@ import rateRider from "./rateRider.route";
 import getCallerRecord from "./getCallerRecord.route";
 import getCallerActiveRides from "./getCallerActiveRides.route";
 import setCallerEmailNotifications from "./setCallerEmailNotifications";
+import addCallerBalance from "./addCallerBalance.route";
 
 const router = express.Router();
 
@@ -26,7 +27,8 @@ const root = {
     rateRider,
     getCallerRecord,
     getCallerActiveRides,
-    setCallerEmailNotifications
+    setCallerEmailNotifications,
+    addCallerBalance
 };
 
 const schema = buildSchema(`
@@ -70,6 +72,10 @@ const schema = buildSchema(`
 
   input SetEmailNotificationsInput{
     emailNotifications: Boolean!
+  }
+
+  input AddCallerBalanceInput{
+    paymentId: String!
   }
 
   type Caller {
@@ -130,6 +136,10 @@ const schema = buildSchema(`
     token: String!
   }
 
+  type Balance{
+    balance: Int!
+  }
+
   type Query {
     getCaller: Caller
     getActiveCalls: [Call]!
@@ -146,6 +156,7 @@ const schema = buildSchema(`
     cancelCall(input: CancelCallInput): Void
     rateRider(input: RateRiderInput): Void
     setCallerEmailNotifications(input: SetEmailNotificationsInput): Void
+    addCallerBalance(input: AddCallerBalanceInput): Balance
   }
 `);
 

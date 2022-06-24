@@ -9,15 +9,16 @@ class AddCallerBalanceAplicationService{
         this.callerRepository = callerRepository;
     }
 
-    async run(callerId: string, balance: number): Promise<void> {
+    async run(callerId: string, balance: number): Promise<number> {
         const caller: Caller = await this.callerRepository.getById(callerId);
-        if(!caller) return;
+        if(!caller) throw Error("Caller not found");
 
         //redondea para abajo pq los centavos siempre son enteros
         const balanceInCents = Math.floor(balance*100);
         caller.addBalance(balanceInCents);
 
         await this.callerRepository.saveNewBalance(caller);
+        return caller.getBalance();
     }
 
 }
