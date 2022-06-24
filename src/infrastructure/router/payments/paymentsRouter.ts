@@ -1,6 +1,7 @@
 import axios from "axios";
 import express from "express";
 import e, { Request, Response } from "express";
+import AddCallerBalanceController from "../../controllers/caller/addCallerBalance.controller";
 
 const router = express.Router();
 
@@ -24,7 +25,8 @@ const getPaymentAmount = async (paymentId: string) => {
 router.get('/payments', async (req: Request, res: Response) => {
     if(req.query.status === 'approved'){
         const amount = await getPaymentAmount(<string>req.query.payment_id);
-        
+        const callerId = <string>req.query.external_reference;
+        AddCallerBalanceController.getInstance().run(callerId, amount);
         res.status(200).send("ok");
     }
 })
