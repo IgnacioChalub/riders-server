@@ -1,5 +1,6 @@
 import CancelCallAplicationService from "../../../aplication/aplicationServices/caller/cancelCall.aplicationService";
 import CallDAO from "../../persistance/callDAO";
+import CallerDAO from "../../persistance/callerDAO";
 
 class CancelCallController{
 
@@ -12,7 +13,7 @@ class CancelCallController{
     }
 
     static create(): CancelCallController{
-        const cancelCallAplicationService: CancelCallAplicationService = new CancelCallAplicationService(CallDAO.getInstance());
+        const cancelCallAplicationService: CancelCallAplicationService = new CancelCallAplicationService(CallDAO.getInstance(), CallerDAO.getInstance());
         return new CancelCallController(cancelCallAplicationService);
     }
 

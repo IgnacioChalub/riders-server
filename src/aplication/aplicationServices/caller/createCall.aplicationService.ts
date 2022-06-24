@@ -31,6 +31,8 @@ class CreateCallAplicationService{
         
         const call: Call = this.createCallDomainService.run(id, caller, requestedVehicles, priceInCents, description, startLocation, finishLocation, new Date(), minRiderRatingStars);
         this.callRepository.save(call);
+
+        this.callerRepository.saveNewBalance(caller);
         
         return call;
     }

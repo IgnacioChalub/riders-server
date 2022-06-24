@@ -4,6 +4,7 @@ import CallerDAO from "../../persistance/callerDAO";
 import {Ride} from "../../../domain/entities/ride";
 import {SocketManager} from "../../socket/socketManager";
 import EmailService from "../../services/emailServiceImplementation";
+import RiderDAO from "../../persistance/riderDAO";
 
 class FinishRideController{
 
@@ -18,7 +19,7 @@ class FinishRideController{
     }
 
     static create(): FinishRideController{
-        const finishRideAplicationService: FinishRideAplicationService = new FinishRideAplicationService(RideDAO.getInstance(), CallerDAO.getInstance(), EmailService.getInstance());
+        const finishRideAplicationService: FinishRideAplicationService = new FinishRideAplicationService(RideDAO.getInstance(), CallerDAO.getInstance(), RiderDAO.getInstance(), EmailService.getInstance());
         return new FinishRideController(finishRideAplicationService, SocketManager.getInstance());
     }
 

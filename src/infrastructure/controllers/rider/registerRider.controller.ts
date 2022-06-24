@@ -5,7 +5,7 @@ import RegisterRiderAplicationService
 import Rider from "../../../domain/entities/rider";
 import IRiderRepository from "../../../aplication/repositories/rider.repository";
 import RiderDAO from "../../persistance/riderDAO";
-import CreateRiderDomainService from "../../../domain/services/rider/createRider.service";
+import CreateRiderDomainService from "../../../domain/services/rider/createRider.domainService";
 
 class RegisterRiderController{
 

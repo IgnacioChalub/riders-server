@@ -7,6 +7,7 @@ interface IRiderRepository{
     getByEmail(email: string): Promise<Rider>;
     getById(id: string): Promise<Rider>;
     saveRating(rider: Rider): Promise<void>;
+    saveNewBalance(riderId: Rider): Promise<void>;
 }
 
 export default IRiderRepository;

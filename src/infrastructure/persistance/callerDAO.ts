@@ -61,6 +61,14 @@ class CallerDAO implements ICallerRepository{
             emailNotifications: caller.recivesEmailNotifications()
         })
     }
+
+    async saveNewBalance(caller: Caller): Promise<void> {
+        await this.repository.update(caller.getId(),{
+            // @ts-ignore
+            balanceInCents: caller.getBalance()
+        })
+    }
+
 }
 
 export default CallerDAO;

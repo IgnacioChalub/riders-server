@@ -17,7 +17,7 @@ class CreateRiderDomainService{
         if (DNI < 0) throw Error("DNI not valid");
 
         const hashedPassword = this.passwordHasher.hash(password);
-        return new Rider(id, name, surname, DNI, Email.create(email), hashedPassword, Vehicle.createVehicle(vehicleType), Rating.create());
+        return new Rider(id, name, surname, DNI, Email.create(email), hashedPassword, Vehicle.createVehicle(vehicleType), Rating.create(), 0);
     }
 
 

@@ -90,6 +90,10 @@ class Call{
     getMinRiderRatingStars(): number {
         return this.minRiderRatingStars;
     }
+
+    getPriceInCents(): number {
+        return this.priceInCents;
+    }
 }
 
 export default Call;

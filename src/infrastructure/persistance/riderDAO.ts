@@ -4,6 +4,7 @@ import IdGeneratorImplementation from "../services/idGeneratorImplementation";
 import {AppDataSource} from "../db/database";
 
 class RiderDAO implements IRiderRepository{
+ 
 
     private static instance: IRiderRepository = new RiderDAO();
 
@@ -53,6 +54,13 @@ class RiderDAO implements IRiderRepository{
 
     async saveRating(rider: Rider): Promise<void> {
         await this.repository.save(rider)
+    }
+
+    async saveNewBalance(rider: Rider): Promise<void> {
+        await this.repository.update(rider.getId(),{
+            // @ts-ignore
+            balanceInCents: rider.getBalance()
+        })
     }
 }
 

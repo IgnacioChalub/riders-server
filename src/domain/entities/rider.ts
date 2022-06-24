@@ -30,7 +30,10 @@ class Rider{
     @Column(() => Rating)
     private rating: Rating;
 
-    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, vehicle: Vehicle, rating: Rating) {
+    @Column()
+    private balanceInCents: number;
+
+    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, vehicle: Vehicle, rating: Rating, balanceInCents: number) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -39,6 +42,7 @@ class Rider{
         this.password = password;
         this.vehicle = vehicle;
         this.rating = rating;
+        this.balanceInCents = balanceInCents;
     }
 
     getId(): string{
@@ -64,7 +68,14 @@ class Rider{
     hasMinStarsRequired(stars: number): boolean {
         return (this.rating.getStars() >= stars)
     }
-
+    
+    addBalance(balanceInCents: number): void{
+        this.balanceInCents = this.balanceInCents + balanceInCents;
+    }
+    
+    getBalance(): number{
+        return this.balanceInCents;
+    }
 }
 
 export default Rider;

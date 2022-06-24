@@ -22,6 +22,7 @@
   "homepage": "https://github.com/IgnacioChalub/riders-server#readme",
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.8",
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",

@@ -29,7 +29,10 @@ class Caller{
     @Column()
     private emailNotifications: boolean;
 
-    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, rating: Rating, emailNotifications: boolean) {
+    @Column()
+    private balanceInCents: number;
+
+    constructor(id: string, name: string, surname: string, DNI: number, email: Email, password: string, rating: Rating, emailNotifications: boolean, balanceInCents: number) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -38,6 +41,7 @@ class Caller{
         this.password = password;
         this.rating = rating;
         this.emailNotifications = emailNotifications;
+        this.balanceInCents = balanceInCents;
     }
 
     getId(): string{
@@ -71,6 +75,23 @@ class Caller{
     setEmailNotifications(emailNotifications: boolean): void {
         this.emailNotifications = emailNotifications;
     }
-}
+
+    addBalance(balanceInCents: number): void{
+        this.balanceInCents = this.balanceInCents + balanceInCents;
+    }
+    
+    getBalance(): number{
+        return this.balanceInCents;
+    }
+
+    discountBalanceIfPosible(priceInCents: number) {
+        if(this.balanceInCents >= priceInCents){
+            this.balanceInCents = this.balanceInCents - priceInCents;
+            return true;
+        }
+        return false;
+    }
+
+}   
 
 export {Caller};

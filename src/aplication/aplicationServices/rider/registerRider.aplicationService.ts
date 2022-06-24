@@ -1,5 +1,5 @@
 import IRiderRepository from "../../repositories/rider.repository";
-import CreateRiderDomainService from "../../../domain/services/rider/createRider.service";
+import CreateRiderDomainService from "../../../domain/services/rider/createRider.domainService";
 import Rider from "../../../domain/entities/rider";
 
 class RegisterRiderAplicationService{

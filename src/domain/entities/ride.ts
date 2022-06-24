@@ -84,6 +84,10 @@ class Ride{
     getFinishDate(): Date{
         return this.finishDate;
     }
+
+    getPriceInCents(): number{
+        return this.call.getPriceInCents();
+    }
 }
 
 export {Ride};
