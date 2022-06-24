@@ -1,4 +1,5 @@
 import {Caller} from "../../domain/entities/caller";
+import { Payment } from "../../domain/entities/payment";
 
 interface ICallerRepository{
     generateId(): Promise<string>;
@@ -9,6 +10,8 @@ interface ICallerRepository{
     saveRating(caller: Caller): Promise<void>;
     setEmailNotifications(caller: Caller): Promise<void>;
     saveNewBalance(caller: Caller): Promise<void>;
+    savePayment(payment: Payment): Promise<void>;
+    getPayment(paymentId: string): Promise<Payment>;
 }
 
 export default ICallerRepository;

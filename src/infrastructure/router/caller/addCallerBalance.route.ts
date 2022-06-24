@@ -18,7 +18,7 @@ const addCallerBalance = async (args: any, req: Request): Promise<any> => {
     
     const amount = payment.transaction_details.net_received_amount;
 
-    const balance = await AddCallerBalanceController.getInstance().run(id, amount);
+    const balance = await AddCallerBalanceController.getInstance().run(payment.id, id, amount);
     return {
         balance: balance
     }

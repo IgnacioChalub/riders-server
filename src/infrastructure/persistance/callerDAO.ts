@@ -2,12 +2,14 @@ import ICallerRepository from "../../aplication/repositories/caller.repository";
 import {Caller} from "../../domain/entities/caller";
 import IdGeneratorImplementation from "../services/idGeneratorImplementation";
 import {AppDataSource} from "../db/database";
+import { Payment } from "../../domain/entities/payment";
 
 class CallerDAO implements ICallerRepository{
 
     private static instance: ICallerRepository = new CallerDAO();
 
     private repository = AppDataSource.getRepository(Caller);
+    private paymentRepository = AppDataSource.getRepository(Payment);
     private tableName = "caller";
 
     save(caller: Caller): void {
@@ -66,6 +68,19 @@ class CallerDAO implements ICallerRepository{
         await this.repository.update(caller.getId(),{
             // @ts-ignore
             balanceInCents: caller.getBalance()
+        })
+    }
+
+    async savePayment(payment: Payment): Promise<void> {
+        await this.paymentRepository.save(payment);
+    }
+
+    async getPayment(paymentId: string): Promise<Payment> {
+        return <Payment>await this.paymentRepository.findOne({
+            where: {
+                // @ts-ignore
+                paymentId: paymentId,
+            },
         })
     }
 

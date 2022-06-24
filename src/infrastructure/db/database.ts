@@ -5,6 +5,7 @@ import Call from "../../domain/entities/call";
 import 'dotenv/config'
 import {Location} from "../../domain/entities/location";
 import {Ride} from "../../domain/entities/ride";
+import { Payment } from "../../domain/entities/payment";
 
 
 const toBool = (string: String) => {
@@ -26,7 +27,8 @@ const AppDataSource: DataSource = new DataSource({
         Rider,
         Call,
         Location,
-        Ride
+        Ride,
+        Payment
     ],
     synchronize: true,
     ssl: ssl
