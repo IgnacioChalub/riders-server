@@ -85,6 +85,7 @@ const schema = buildSchema(`
     DNI: Int!
     email: Email!
     rating: Rating!
+    emailNotifications: Boolean!
     balanceInCents: Int!
   }
 
