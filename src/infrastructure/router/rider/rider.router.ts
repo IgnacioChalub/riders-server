@@ -72,6 +72,7 @@ const schema = buildSchema(`
     email: Email!
     vehicle: Vehicle!
     rating: Rating!
+    balanceInCents: Int!
   }
   
   type RiderRideStatus{
